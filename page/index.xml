@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pages on My New Hugo Site</title>
-    <link>https://o-tantk.github.io/page/</link>
-    <description>Recent content in Pages on My New Hugo Site</description>
+    <title>Pages on tantk land</title>
+    <link>/page/</link>
+    <description>Recent content in Pages on tantk land</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>euc-kr</language>
+    <managingEditor>tantk90@hotmail.com (tantk)</managingEditor>
+    <webMaster>tantk90@hotmail.com (tantk)</webMaster>
     <lastBuildDate>Mon, 02 May 2016 02:06:32 +0900</lastBuildDate>
-    <atom:link href="https://o-tantk.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/page/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>about</title>
-      <link>https://o-tantk.github.io/page/about/</link>
+      <link>/page/about/</link>
       <pubDate>Mon, 02 May 2016 02:06:32 +0900</pubDate>
-      
-      <guid>https://o-tantk.github.io/page/about/</guid>
+      <author>tantk90@hotmail.com (tantk)</author>
+      <guid>/page/about/</guid>
       <description>&lt;p&gt;게임이 만들고 싶은 개발자&lt;/p&gt;
 </description>
     </item>
