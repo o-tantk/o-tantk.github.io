@@ -13,10 +13,10 @@
     
     <item>
       <title>블로그 소개</title>
-      <link>/post/hello-world/</link>
+      <link>/posts/hello-world/</link>
       <pubDate>Mon, 02 May 2016 02:06:23 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/post/hello-world/</guid>
+      <guid>/posts/hello-world/</guid>
       <description>
 
 &lt;p&gt;안녕하세요. 땅꾸입니다.&lt;/p&gt;

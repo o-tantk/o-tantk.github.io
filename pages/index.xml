@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on tantk land</title>
+    <link>/pages/</link>
+    <description>Recent content in Pages on tantk land</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>euc-kr</language>
+    <managingEditor>tantk90@hotmail.com (tantk)</managingEditor>
+    <webMaster>tantk90@hotmail.com (tantk)</webMaster>
+    <lastBuildDate>Mon, 02 May 2016 02:06:32 +0900</lastBuildDate>
+    <atom:link href="/pages/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Mon, 02 May 2016 02:06:32 +0900</pubDate>
+      <author>tantk90@hotmail.com (tantk)</author>
+      <guid>/about/</guid>
+      <description>
+
+&lt;h1 id=&#34;tantk-땅꾸:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;tantk == 땅꾸&lt;/h1&gt;
+
+&lt;p&gt;게임 개발을 꿈꾸는 덕후.&lt;/p&gt;
+
+&lt;p&gt;* 그림 그리는거 좋아함.&lt;/p&gt;
+
+&lt;h2 id=&#34;feel-free-to-contact:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;Feel free to contact&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;i class=&#34;fa fa-envelope&#34;&gt;&lt;/i&gt; &lt;a href=&#34;mailto:tantk90@hotmail.com&#34;&gt;tantk90 &lt;i class=&#34;fa fa-at&#34;&gt;&lt;/i&gt; hotmail.com&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fa fa-twitter-square&#34;&gt;&lt;/i&gt; &lt;a href=&#34;https://twitter.com/o_tantk&#34;&gt;@o_tantk&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;skills:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;SKILLS&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Languages: C++(Primary), C, C#, GLSL, CUDA, JAVA, Python, &amp;hellip;&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Frameworks: STL, OpenGL, Unity3D, &amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;i-class-fa-fa-bookmark-i-another-blog-http-blog-naver-com-tantk:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;&lt;a href=&#34;http://blog.naver.com/tantk&#34;&gt;&lt;i class=&#34;fa fa-bookmark&#34;&gt;&lt;/i&gt; Another blog&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;More private blog especially for &lt;strong&gt;MOE&lt;/strong&gt;, &lt;strong&gt;drawings&lt;/strong&gt; et el.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
