@@ -6,23 +6,50 @@
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>euc-kr</language>
-    <lastBuildDate>Mon, 02 May 2016 02:06:23 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 02 May 2016 02:06:32 +0900</lastBuildDate>
     <atom:link href="https://o-tantk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>이곳은 땅꾸의 블로그입니다.</title>
+      <title>about</title>
+      <link>https://o-tantk.github.io/page/about/</link>
+      <pubDate>Mon, 02 May 2016 02:06:32 +0900</pubDate>
+      
+      <guid>https://o-tantk.github.io/page/about/</guid>
+      <description>&lt;p&gt;게임이 만들고 싶은 개발자&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>블로그 소개</title>
       <link>https://o-tantk.github.io/post/hello-world/</link>
       <pubDate>Mon, 02 May 2016 02:06:23 +0900</pubDate>
       
       <guid>https://o-tantk.github.io/post/hello-world/</guid>
       <description>&lt;p&gt;안녕하세요. 땅꾸입니다.&lt;/p&gt;
 
-&lt;p&gt;개발과 관련된 포스트를 남기기 위해 개인 서버에 블로그를 만들었습니다.&lt;/p&gt;
+&lt;p&gt;개발과 관련된 포스트를 남기기 위해 블로그를 만들었습니다.&lt;/p&gt;
 
-&lt;p&gt;이 블로그는 &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;라는 Static Website Engine을 이용해서 만들었고, &lt;a href=&#34;https://caddyserver.com/&#34;&gt;Caddy&lt;/a&gt;라는 웹서버 프로그램을 이용해 구동중입니다.&lt;/p&gt;
+&lt;p&gt;이 블로그는 &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;라는 Static Website Engine을 이용해서 만들었고, &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;를 이용해 호스팅 하고 있습니다.&lt;/p&gt;
 
-&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;MARVEL × THE IDOLM@STER &lt;a href=&#34;https://twitter.com/hashtag/Teamcap?src=hash&#34;&gt;#Teamcap&lt;/a&gt;&lt;a href=&#34;https://twitter.com/hashtag/%E3%82%B7%E3%83%93%E3%83%AB%E3%82%A6%E3%82%A9%E3%83%BC?src=hash&#34;&gt;#シビルウォー&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/CivilWar?src=hash&#34;&gt;#CivilWar&lt;/a&gt; &lt;a href=&#34;https://t.co/Zrf9IUIPyx&#34;&gt;pic.twitter.com/Zrf9IUIPyx&lt;/a&gt;&lt;/p&gt;&amp;mdash; たく (@taku1122) &lt;a href=&#34;https://twitter.com/taku1122/status/731077890184372226&#34;&gt;May 13, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;모든 글은 편의을 위해 반말로 작성되며, 오직 이 포스트만 존댓말로 작성됩니다.&lt;/p&gt;
+
+&lt;p&gt;여기부터 markdown 문서 테스트이므로 무시하셔도 좋습니다.&lt;/p&gt;
+
+&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;ko&#34; dir=&#34;ltr&#34;&gt;오지구요 지렸구요 앙김오티&lt;/p&gt;&amp;mdash; O땅꾸 (@o_tantk) &lt;a href=&#34;https://twitter.com/o_tantk/status/742203311508443136&#34;&gt;June 13, 2016&lt;/a&gt;&lt;/blockquote&gt;
 &lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;#include &amp;lt;iostream&amp;gt;
+int main(int argc, char **argv){
+    std::cout &amp;lt;&amp;lt; &amp;quot;hello world!&amp;quot; &amp;lt;&amp;lt; std::endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/KXSUEU7ISfQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     
