@@ -29,7 +29,8 @@
       <guid>/post/hello-world/</guid>
       <description>&lt;p&gt;안녕하세요. 땅꾸입니다.&lt;/p&gt;
 
-&lt;p&gt;개발과 관련된 포스트를 남기기 위해 블로그를 만들었습니다.&lt;/p&gt;
+&lt;p&gt;개발과 관련된 포스트를 남기기 위해 블로그를 만들었습니다.
+특히, 기존에 에버노트를 이용해서 개인적으로 작성했던 글들을 다시 정리하고자 하는 목적이 큽니다.&lt;/p&gt;
 
 &lt;p&gt;이 블로그는 &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;라는 Static Website Engine을 이용해서 만들었고, &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;를 이용해 호스팅 하고 있습니다.&lt;/p&gt;
 
