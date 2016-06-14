@@ -79,11 +79,20 @@ int main(int argc, char **argv){
 // 코드는 어디까지 길어질까아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ 는 highlight.js는 자동 줄넘김이다.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;
+&lt;p&gt;다음은 glsl 코드 샘플&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-glsl&#34;&gt;layout(location=0) in vec3 position;
+
+void main(void){
+    gl_Position = position;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
   &lt;iframe src=&#34;//www.youtube.com/embed/KXSUEU7ISfQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
  &lt;/div&gt;
-&lt;/p&gt;
+
 
 &lt;p&gt;
 &lt;figure &gt;
@@ -99,7 +108,18 @@ int main(int argc, char **argv){
 &lt;/figure&gt;
 
 
-위의 호무호무한 호무라짱을 보라! 너무나도 호무호무 하다. 호무호무&amp;hellip;&lt;/p&gt;
+위의 호무호무한 호무라짱을 보라! 너무나도 호무호무하다. 호무호무&amp;hellip;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;호무호무는 너무나도 호무호무하기에 인용까지 해야 할 정도이다.&lt;br /&gt;
+두 번째 인용 줄&lt;/p&gt;
+
+&lt;p&gt;세 번째 인용 줄&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;인용문 끝.&lt;/p&gt;
+
+&lt;h3 id=&#34;shibe-doge:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Shibe doge&lt;/h3&gt;
 
 &lt;p&gt;본 김에 시베도 보자
 &lt;img src=&#34;시베.jpg&#34; alt=&#34;shibe doge&#34; /&gt;
