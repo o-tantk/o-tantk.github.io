@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tantk land</title>
-    <link>/</link>
-    <description>Recent content on tantk land</description>
+    <title>C sharp winform on tantk land</title>
+    <link>/tags/c-sharp-winform/</link>
+    <description>Recent content in C sharp winform on tantk land</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>euc-kr</language>
     <managingEditor>tantk90@hotmail.com (tantk)</managingEditor>
     <webMaster>tantk90@hotmail.com (tantk)</webMaster>
     <lastBuildDate>Fri, 17 Jun 2016 15:40:57 +0900</lastBuildDate>
-    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/c-sharp-winform/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>콘솔 프로그램 실행기</title>
@@ -134,124 +134,6 @@ if (subkey != null)
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.differencebetween.net/technology/hardware-technology/difference-between-hkey_current_user-and-hkey_local_machine/&#34;&gt;http://www.differencebetween.net/technology/hardware-technology/difference-between-hkey_current_user-and-hkey_local_machine/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Search</title>
-      <link>/search/</link>
-      <pubDate>Wed, 15 Jun 2016 04:50:09 +0900</pubDate>
-      <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/search/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Mon, 02 May 2016 02:06:32 +0900</pubDate>
-      <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/about/</guid>
-      <description>
-
-&lt;h1 id=&#34;tantk-땅꾸:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;tantk == 땅꾸&lt;/h1&gt;
-
-&lt;p&gt;A game developer wannabe.&lt;/p&gt;
-
-&lt;h2 id=&#34;feel-free-to-contact:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;Feel free to contact&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;i class=&#34;fa fa-envelope&#34;&gt;&lt;/i&gt; &lt;a href=&#34;mailto:tantk90@hotmail.com&#34;&gt;tantk90 at hotmail.com&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;i class=&#34;fa fa-twitter-square&#34;&gt;&lt;/i&gt; &lt;a href=&#34;https://twitter.com/o_tantk&#34;&gt;@o_tantk&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;skills:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;SKILLS&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Languages: C++(Primary), C, C#, GLSL, CUDA, JAVA, Python, &amp;hellip;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Frameworks: STL, OpenGL, Unity3D, &amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;i-class-fa-fa-bookmark-i-another-blog-http-blog-naver-com-tantk:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;&lt;a href=&#34;http://blog.naver.com/tantk&#34;&gt;&lt;i class=&#34;fa fa-bookmark&#34;&gt;&lt;/i&gt; Another blog&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;More private blog especially for &lt;strong&gt;MOE&lt;/strong&gt;, &lt;strong&gt;drawings&lt;/strong&gt; et el.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>땅꾸의 블로그</title>
-      <link>/posts/hello-world/</link>
-      <pubDate>Mon, 02 May 2016 02:06:23 +0900</pubDate>
-      <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/posts/hello-world/</guid>
-      <description>
-
-&lt;h1 id=&#34;안녕하세요-땅꾸입니다:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;안녕하세요. 땅꾸입니다.&lt;/h1&gt;
-
-&lt;p&gt;이 블로그는 &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;라는 Static Website Engine을 이용해서 만들었고, &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;를 이용해 호스팅 하고 있습니다.&lt;/p&gt;
-
-&lt;h1 id=&#34;이-아래는-markdown-문서의-테스트이므로-무시하셔도-좋습니다:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;이 아래는 markdown 문서의 테스트이므로 무시하셔도 좋습니다.&lt;/h1&gt;
-
-&lt;p&gt;Windows OS의 경로 최대길이는 &lt;code&gt;MAX_PATH&lt;/code&gt;라는 상수값 260으로 제한되어 있다.&lt;/p&gt;
-
-&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;ko&#34; dir=&#34;ltr&#34;&gt;오지구요 지렸구요 앙김오티&lt;/p&gt;&amp;mdash; O땅꾸 (@o_tantk) &lt;a href=&#34;https://twitter.com/o_tantk/status/742203311508443136&#34;&gt;June 13, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;다음은 c++ 코드 샘플&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;#include &amp;lt;iostream&amp;gt;
-int main(int argc, char **argv){
-    std::cout &amp;lt;&amp;lt; &amp;quot;hello world!&amp;quot; &amp;lt;&amp;lt; std::endl;
-    return 0;
-}
-// 코드는 어디까지 길어질까아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ 는 highlight.js는 자동 줄넘김이다.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;다음은 glsl 코드 샘플&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-glsl&#34;&gt;layout(location=0) in vec3 position;
-
-void main(void){
-    gl_Position = position;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/KXSUEU7ISfQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
-
-
-&lt;p&gt;
-&lt;figure &gt;
-    
-        &lt;img src=&#34;%ed%98%b8%eb%ac%b4%ed%98%b8%eb%ac%b4.jpg&#34; alt=&#34;호무호무&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        호무호무한 호무라짱
-        
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-위의 호무호무한 호무라짱을 보라! 너무나도 호무호무하다. 호무호무&amp;hellip;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;호무호무는 너무나도 호무호무하기에 인용까지 해야 할 정도이다.&lt;br /&gt;
-두 번째 인용 줄&lt;/p&gt;
-
-&lt;p&gt;세 번째 인용 줄&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;인용문 끝.&lt;/p&gt;
-
-&lt;h3 id=&#34;shibe-doge:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Shibe doge&lt;/h3&gt;
-
-&lt;p&gt;본 김에 시베도 보자
-&lt;img src=&#34;시베.jpg&#34; alt=&#34;shibe doge&#34; /&gt;
-such wow&lt;/p&gt;
 </description>
     </item>
     

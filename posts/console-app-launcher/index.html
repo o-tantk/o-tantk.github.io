@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>콘솔 프로그램 실행기 - tantk land</title>
+
+  <meta name="author" content="tantk" />
+  
+  
+
+  <meta name="generator" content="Hugo 0.15" />
+
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="tantk land">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/default.min.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  
+  
+  <meta property="og:title" content="콘솔 프로그램 실행기" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/" />
+  <meta property="og:image" content="img/avatar-icon.jpg" />
+  
+</head>
+
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">tantk land</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+          <a title="About" href="/about/">About</a>
+  	      </li>
+  	    
+      
+        
+          <li>
+          <a title="Posts" href="/posts/">Posts</a>
+  	      </li>
+  	    
+      
+        
+          <li>
+          <a title="Tags" href="/tags/">Tags</a>
+  	      </li>
+  	    
+      
+          <li>
+            <a title="Search" href="/search/"><i class="fa fa-search" aria-hidden="true"></i></a>
+  	      </li>
+      </ul>
+    </div>
+
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+      
+          <a title="tantk land" href="/">
+              <img class="avatar-img" src="/img/avatar-icon.jpg" alt="tantk land" />
+          </a>
+      
+	  </div>
+	</div>
+
+  </div>
+</nav>
+
+
+    
+
+    
+        
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="posts-heading">
+          <h1>콘솔 프로그램 실행기</h1>
+      
+        
+            <h2 class="posts-subheading">C# Winform을 이용해 파라미터 입력이 가능한 실행기를 만들자</h2>
+        
+      
+      
+      
+      <span class="post-meta">2016-06-17 by <a href="https://twitter.com/o_tantk" title="Twitter">tantk</a></span>
+      
+
+      
+<ul class="tags">
+    
+    <li class="tags-li"><a href="/tags/c-sharp-winform" class="tags-a" title="Tag: c sharp winform"># c sharp winform</a></li>
+    
+</ul>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+          
+
+<h1 id="사설:d680e8a854a7cbad6d490c445cba2eba">사설</h1>
+
+<p>영상처리 과제를 할 때였다. 알고리즘의 파라미터를 다양하게 변화시켜 그에 따른 여러 결과를 보여야 했다.<br />
+그런데, 윈도우에서 콘솔 프로그램의 파라미터를 계속 바꾸는 것이 여간 귀찮은게 아니었다. 특히 실행이 끝나면 무의식적으로 cmd 창을 끄는 버릇 때문에, 다시 cmd 창을 켜고 실행 파일 위치까지 이동하는 과정이 너무 귀찮았다.</p>
+
+<p>Batch 파일은 작성하는 방법을 제대로 알지 못했고, 입력 파라미터가 정해진게 아니어서 미리 작업를 예약하는 방식은 쓸 수 없었다.
+그렇다고 콘솔 프로그램을 GUI로 새로 작성하기에는 시간이 아깝다.</p>
+
+<p>결국 C# winform을 이용해, 콘솔 프로그램의 위치를 기억하고 파라미터를 입력할 수 있는 간단한 프로그램을 작성하기로 했다.</p>
+
+<h1 id="결과:d680e8a854a7cbad6d490c445cba2eba">결과</h1>
+
+<p><img src="#" alt="결과 이미지" /></p>
+
+<h1 id="목표:d680e8a854a7cbad6d490c445cba2eba">목표</h1>
+
+<ul>
+<li>콘솔 프로그램의 위치와 입력했던 파라미터를 기억한다.</li>
+<li>콘솔 프로그램의 실행 및 파라미터 입력을 GUI 환경에서 수행한다.</li>
+</ul>
+
+<h2 id="파라미터-입력-및-실행:d680e8a854a7cbad6d490c445cba2eba">파라미터 입력 및 실행</h2>
+
+<p>내가 원했던 것은, 콘솔 프로그램에 파라미터를 입력하고 실행하면 그 실행 내용과 결과가 cmd 창에 출력되는 모습이었는데, <code>System.Diagnotics.Process</code>로 콘솔 프로그램을 직접 실행시켰더니 프로그램 종료와 함께 cmd 창이 닫혔다.<br />
+그래서, cmd부터 실행시키고 cmd에서 콘솔 프로그램을 실행시키는 방향으로 설계해야 했으며, 이는 cmd를 콘슬 프로그램 및 파라미터가 담긴 명령줄과 함께 실행함으로써 해결했다.</p>
+
+<p><a href="https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/cmd.mspx?mfr=true">cmd의 옵션</a>을 확인해 보니, cmd에 명령줄을 전달하려면 <code>/c</code> 또는 <code>/k</code> 옵션을 이용하면 된다.</p>
+
+<blockquote>
+<p>/c : Carries out the command specified by string and then stops.<br />
+/k : Carries out the command specified by string and continues.</p>
+</blockquote>
+
+<p>둘 중 무슨 옵션을 이용해야 할까? 바로 창이 닫히는게 문제니까 <code>/k</code> 옵션을 쓰는게 좋을까? 그러나 <code>/k</code> 옵션을 이용하면 프로그램 종료 후 다음 명령을 기다리는 프롬프트 화면으로 넘어가기 때문에 창을 수작업으로 닫아야 한다. 결과 확인만 하면 되는데 귀찮은 작업이 늘어난다.</p>
+
+<p>결국 <code>/c</code> 옵션을 이용해야 하는데, &lsquo;계속하려면 아무키나 누르세요&rsquo;를 띄우는게 좋겠다.<br />
+처음 코딩을 배울 때 꼼수로 애용했던 <code>pause</code>를 이용하자. cmd를 띄우는 명령과 함께 사용해야 하니 <code>&amp;</code>를 이용하면 된다. (여러 명령을 함께 실행하는 방법은 <a href="https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/ntcmds_shelloverview.mspx?mfr=true">여기</a>를 참조)</p>
+
+<p>명령줄은 다음과 같을 것이다.</p>
+
+<pre><code class="language-nohighlight"># cmd.exe /c myapp.exe -myparam &amp; pause
+</code></pre>
+
+<p>이를 C# Winform에서 실행해 보자.</p>
+
+<pre><code class="language-C#">// using System.Diagnotics;
+// appPath: 프로그램 경로. ex) &quot;c:\myapp.exe&quot;
+// tb_parameters: 파라미터가 입력된 Textbox.
+
+Process app = new Process();
+app.StartInfo.FileName = &quot;cmd.exe&quot;;
+app.StartInfo.Arguments = &quot;/C &quot; + appPath + &quot; &quot; + tb_parameters.Text + &quot;&amp; pause&quot;;
+app.Start();
+</code></pre>
+
+<p>이때, <code>Process</code>의 작업 디렉토리를 설정해주지 않으면 콘솔 프로그램 <strong>실행기의 위치</strong>가 작업 디렉토리가 되므로, <code>System.IO.Path.GetDirectoryName()</code>으로 콘솔 프로그램의 위치를 가져와 작업 디렉토리로 설정해주자.</p>
+
+<p>한 줄만 추가해 주면 된다.</p>
+
+<pre><code class="language-C#">// using System.IO;
+
+app.StartInfo.WorkingDirectory = Path.GetDirectoryName(appPath);
+</code></pre>
+
+<h2 id="레지스트리-저장:d680e8a854a7cbad6d490c445cba2eba">레지스트리 저장</h2>
+
+<p>실행했던 콘솔 프로그램의 위치와 파라미터의 기억은 레지스트리를 이용한다.</p>
+
+<p>레지스트리의 저장 위치는 <code>LOCAL_MACHINE</code>과 <code>CURRENT_USER</code>의 두 가지 선택지가 존재하는데, <code>LOCAL_MACHINE</code>은 컴퓨터 전역 / 모든 사용자에게 적용되는 필드로 저장할 때 관리자 권한을 요구한다. <code>CURRENT_USER</code>는 사용자 계정에 종속되는 필드로 프로그램의 환경 설정을 저장할 때 일반적으로 사용된다.</p>
+
+<p>콘솔 프로그램 실행기는 특별한 정보를 저장하는게 아니니 <code>CURRENT_USER</code> 필드를 이용한다.<br />
+그리고, 일반 소프트웨어는 보통 <code>Software</code> 필드를 이용하므로 서브 키를 <code>Software\\AppLauncher</code>로 만들자.<br />
+C# 코드 상에선 다음과 같다.</p>
+
+<pre><code class="language-C#">// using Microsoft.Win32;
+
+RegistryKey subkey = Registry.CurrentUser.OpenSubKey(&quot;Software\\AppLauncher&quot;, true);
+// 먼저 OpenSubKey로 이미 서브 키가 있는지 확인한다.
+// 쓰기를 수행하려면 두 번째 인자로 true를 넘겨줘야 한다.
+if (subkey == null)
+{
+    subkey = Registry.CurrentUser.CreateSubKey(&quot;Software\\AppLauncher&quot;);
+}
+</code></pre>
+
+<p>레지스트리에 저장할 것은 프로그램의 경로와 파라미터이다. 두 값 모두 <code>string</code>이므로 <code>RegistryValueKind.String</code>으로 지정하여 저장한다.</p>
+
+<pre><code class="language-C#">subkey.SetValue(&quot;AppPath&quot;, appPath, RegistryValueKind.String);
+subkey.SetValue(&quot;Parameters&quot;, tb_parameters.Text, RegistryValueKind.String);
+</code></pre>
+
+<p>레지스트리를 가져올 때는, <code>object</code> 객체를 반환하는 <code>RegistryKey.GetValue</code>를 이용한다.</p>
+
+<pre><code class="language-C#">// using Microsoft.Win32;
+
+RegistryKey subkey = Registry.CurrentUser.OpenSubKey(&quot;Software\\AppLauncher&quot;);
+if (subkey != null)
+{
+    appPath = subkey.GetValue(&quot;AppPath&quot;).ToString();
+    tb_parameters.Text = subkey.GetValue(&quot;Parameters&quot;).ToString(); 
+}
+</code></pre>
+
+<h2 id="끝:d680e8a854a7cbad6d490c445cba2eba">끝</h2>
+
+<p>콘솔 프로그램에 파라미터를 입력하여 실행하고, 그 내용을 레지스트리에 저장하는 기능이 구현되었으니 프로그램 구조를 적절히 설계만 하면 된다.</p>
+
+<p>콘솔 프로그램을 실행하는 부분은 실행 버튼의 <code>Click</code> 이벤트에 구현하면 될 것이고&hellip;<br />
+레지스트리를 가져올 때는 <code>Load</code> 이벤트를, 기록할 때는 <code>Form_Closed</code>를 이용하자.</p>
+
+<h1 id="references:d680e8a854a7cbad6d490c445cba2eba">References</h1>
+
+<ul>
+<li><a href="http://www.differencebetween.net/technology/hardware-technology/difference-between-hkey_current_user-and-hkey_local_machine/">http://www.differencebetween.net/technology/hardware-technology/difference-between-hkey_current_user-and-hkey_local_machine/</a></li>
+</ul>
+
+      </article>
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+            <a href="/posts/hello-world/" data-toggle="tooltip" data-placement="top" title="Previous : 땅꾸의 블로그">
+            땅꾸의 블로그
+            
+            <br/><small>이곳은 땅꾸의 블로그입니다</small>
+            
+            </a>
+        </li>
+        
+        
+      </ul>
+
+      
+      
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//tantk.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+    
+
+    
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/o-tantk" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+          <li>
+            <a href="https://twitter.com/o_tantk" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+          <li>
+            <a href="mailto:tantk90@hotmail.com" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+	    	  
+          
+          
+
+    		  <li>
+      			<a href="/index.xml" title="RSS">
+      			  <span class="fa-stack fa-lg">
+        				<i class="fa fa-circle fa-stack-2x"></i>
+        				<i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      			  </span>
+      			</a>
+    		  </li>		
+
+        </ul>
+        <p class="copyright text-muted">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+            &nbsp;by tantk in 2016
+            </p>
+  	        
+    		<p class="theme-by text-muted">
+                <a href="https://gohugo.io">Hugo</a>
+    		  | Theme by
+    		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/jquery-1.11.2.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    
+<script>
+    (function() {
+    if (window.location.hostname === "localhost") {
+        return;
+    } else {
+        (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-79317002-1', 'auto');
+        ga('send', 'pageview');
+    }
+    })();
+</script>
+<noscript>Google analytics is being used.</noscript>
+
+
+</body>
+
+</html>

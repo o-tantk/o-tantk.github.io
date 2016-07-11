@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>블로그 소개 - tantk land</title>
+  <title>땅꾸의 블로그 - tantk land</title>
 
   <meta name="author" content="tantk" />
   
@@ -25,7 +25,7 @@
   <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
   
   
-  <meta property="og:title" content="블로그 소개" />
+  <meta property="og:title" content="땅꾸의 블로그" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="/" />
   <meta property="og:image" content="img/avatar-icon.jpg" />
@@ -33,7 +33,7 @@
 </head>
 
 
-  <body>
+<body>
 
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -90,7 +90,7 @@
 
     
 
-      
+    
         
 
 
@@ -104,7 +104,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="posts-heading">
-          <h1>블로그 소개</h1>
+          <h1>땅꾸의 블로그</h1>
       
         
             <h2 class="posts-subheading">이곳은 땅꾸의 블로그입니다</h2>
@@ -139,16 +139,11 @@
       <article role="main" class="blog-post">
           
 
-<p>안녕하세요. 땅꾸입니다.</p>
-
-<p>개발과 관련된 포스트를 남기기 위해 블로그를 만들었습니다.<br />
-특히, 에버노트에 개인적으로 작성했던 글들을 다시 정리하고자 하는 목적이 큽니다.</p>
+<h1 id="안녕하세요-땅꾸입니다:d680e8a854a7cbad6d490c445cba2eba">안녕하세요. 땅꾸입니다.</h1>
 
 <p>이 블로그는 <a href="https://gohugo.io/">Hugo</a>라는 Static Website Engine을 이용해서 만들었고, <a href="https://github.com/">Github</a>를 이용해 호스팅 하고 있습니다.</p>
 
-<p>모든 글은 편의을 위해 반말로 작성되며, 오직 이 포스트만 존댓말로 작성되어 있습니다.</p>
-
-<h4 id="이-아래는-markdown-문서의-테스트이므로-무시하셔도-좋습니다:d680e8a854a7cbad6d490c445cba2eba">이 아래는 markdown 문서의 테스트이므로 무시하셔도 좋습니다.</h4>
+<h1 id="이-아래는-markdown-문서의-테스트이므로-무시하셔도-좋습니다:d680e8a854a7cbad6d490c445cba2eba">이 아래는 markdown 문서의 테스트이므로 무시하셔도 좋습니다.</h1>
 
 <p>Windows OS의 경로 최대길이는 <code>MAX_PATH</code>라는 상수값 260으로 제한되어 있다.</p>
 
@@ -216,6 +211,15 @@ such wow</p>
       <ul class="pager blog-pager">
         
         
+        <li class="next">
+        <a href="/posts/console-app-launcher/" data-toggle="tooltip" data-placement="top" title="Next : 콘솔 프로그램 실행기">
+            콘솔 프로그램 실행기
+            
+            <br/><small>C# Winform을 이용해 파라미터 입력이 가능한 실행기를 만들자</small>
+            
+        </a>
+        </li>
+        
       </ul>
 
       
@@ -242,9 +246,9 @@ such wow</p>
   </div>
 </div>
 
-      
+    
 
-      
+    
 
     <footer>
   <div class="container beautiful-jekyll-footer">
@@ -320,15 +324,30 @@ such wow</p>
 
     
 <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function() {
+    if (window.location.hostname === "localhost") {
+        return;
+    } else {
+        (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-ga('create', 'UA-79317002-1', 'auto');
-ga('send', 'pageview');
+        ga('create', 'UA-79317002-1', 'auto');
+        ga('send', 'pageview');
+    }
+    })();
 </script>
+<noscript>Google analytics is being used.</noscript>
 
 
-  </body>
+</body>
+
 </html>

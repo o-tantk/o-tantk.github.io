@@ -8,27 +8,148 @@
     <language>euc-kr</language>
     <managingEditor>tantk90@hotmail.com (tantk)</managingEditor>
     <webMaster>tantk90@hotmail.com (tantk)</webMaster>
-    <lastBuildDate>Mon, 02 May 2016 02:06:23 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jun 2016 15:40:57 +0900</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>블로그 소개</title>
+      <title>콘솔 프로그램 실행기</title>
+      <link>/posts/console-app-launcher/</link>
+      <pubDate>Fri, 17 Jun 2016 15:40:57 +0900</pubDate>
+      <author>tantk90@hotmail.com (tantk)</author>
+      <guid>/posts/console-app-launcher/</guid>
+      <description>
+
+&lt;h1 id=&#34;사설:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;사설&lt;/h1&gt;
+
+&lt;p&gt;영상처리 과제를 할 때였다. 알고리즘의 파라미터를 다양하게 변화시켜 그에 따른 여러 결과를 보여야 했다.&lt;br /&gt;
+그런데, 윈도우에서 콘솔 프로그램의 파라미터를 계속 바꾸는 것이 여간 귀찮은게 아니었다. 특히 실행이 끝나면 무의식적으로 cmd 창을 끄는 버릇 때문에, 다시 cmd 창을 켜고 실행 파일 위치까지 이동하는 과정이 너무 귀찮았다.&lt;/p&gt;
+
+&lt;p&gt;Batch 파일은 작성하는 방법을 제대로 알지 못했고, 입력 파라미터가 정해진게 아니어서 미리 작업를 예약하는 방식은 쓸 수 없었다.
+그렇다고 콘솔 프로그램을 GUI로 새로 작성하기에는 시간이 아깝다.&lt;/p&gt;
+
+&lt;p&gt;결국 C# winform을 이용해, 콘솔 프로그램의 위치를 기억하고 파라미터를 입력할 수 있는 간단한 프로그램을 작성하기로 했다.&lt;/p&gt;
+
+&lt;h1 id=&#34;결과:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;결과&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&#34;#&#34; alt=&#34;결과 이미지&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;목표:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;목표&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;콘솔 프로그램의 위치와 입력했던 파라미터를 기억한다.&lt;/li&gt;
+&lt;li&gt;콘솔 프로그램의 실행 및 파라미터 입력을 GUI 환경에서 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;파라미터-입력-및-실행:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;파라미터 입력 및 실행&lt;/h2&gt;
+
+&lt;p&gt;내가 원했던 것은, 콘솔 프로그램에 파라미터를 입력하고 실행하면 그 실행 내용과 결과가 cmd 창에 출력되는 모습이었는데, &lt;code&gt;System.Diagnotics.Process&lt;/code&gt;로 콘솔 프로그램을 직접 실행시켰더니 프로그램 종료와 함께 cmd 창이 닫혔다.&lt;br /&gt;
+그래서, cmd부터 실행시키고 cmd에서 콘솔 프로그램을 실행시키는 방향으로 설계해야 했으며, 이는 cmd를 콘슬 프로그램 및 파라미터가 담긴 명령줄과 함께 실행함으로써 해결했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/cmd.mspx?mfr=true&#34;&gt;cmd의 옵션&lt;/a&gt;을 확인해 보니, cmd에 명령줄을 전달하려면 &lt;code&gt;/c&lt;/code&gt; 또는 &lt;code&gt;/k&lt;/code&gt; 옵션을 이용하면 된다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;/c : Carries out the command specified by string and then stops.&lt;br /&gt;
+/k : Carries out the command specified by string and continues.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;둘 중 무슨 옵션을 이용해야 할까? 바로 창이 닫히는게 문제니까 &lt;code&gt;/k&lt;/code&gt; 옵션을 쓰는게 좋을까? 그러나 &lt;code&gt;/k&lt;/code&gt; 옵션을 이용하면 프로그램 종료 후 다음 명령을 기다리는 프롬프트 화면으로 넘어가기 때문에 창을 수작업으로 닫아야 한다. 결과 확인만 하면 되는데 귀찮은 작업이 늘어난다.&lt;/p&gt;
+
+&lt;p&gt;결국 &lt;code&gt;/c&lt;/code&gt; 옵션을 이용해야 하는데, &amp;lsquo;계속하려면 아무키나 누르세요&amp;rsquo;를 띄우는게 좋겠다.&lt;br /&gt;
+처음 코딩을 배울 때 꼼수로 애용했던 &lt;code&gt;pause&lt;/code&gt;를 이용하자. cmd를 띄우는 명령과 함께 사용해야 하니 &lt;code&gt;&amp;amp;&lt;/code&gt;를 이용하면 된다. (여러 명령을 함께 실행하는 방법은 &lt;a href=&#34;https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/ntcmds_shelloverview.mspx?mfr=true&#34;&gt;여기&lt;/a&gt;를 참조)&lt;/p&gt;
+
+&lt;p&gt;명령줄은 다음과 같을 것이다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-nohighlight&#34;&gt;# cmd.exe /c myapp.exe -myparam &amp;amp; pause
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이를 C# Winform에서 실행해 보자.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C#&#34;&gt;// using System.Diagnotics;
+// appPath: 프로그램 경로. ex) &amp;quot;c:\myapp.exe&amp;quot;
+// tb_parameters: 파라미터가 입력된 Textbox.
+
+Process app = new Process();
+app.StartInfo.FileName = &amp;quot;cmd.exe&amp;quot;;
+app.StartInfo.Arguments = &amp;quot;/C &amp;quot; + appPath + &amp;quot; &amp;quot; + tb_parameters.Text + &amp;quot;&amp;amp; pause&amp;quot;;
+app.Start();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이때, &lt;code&gt;Process&lt;/code&gt;의 작업 디렉토리를 설정해주지 않으면 콘솔 프로그램 &lt;strong&gt;실행기의 위치&lt;/strong&gt;가 작업 디렉토리가 되므로, &lt;code&gt;System.IO.Path.GetDirectoryName()&lt;/code&gt;으로 콘솔 프로그램의 위치를 가져와 작업 디렉토리로 설정해주자.&lt;/p&gt;
+
+&lt;p&gt;한 줄만 추가해 주면 된다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C#&#34;&gt;// using System.IO;
+
+app.StartInfo.WorkingDirectory = Path.GetDirectoryName(appPath);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;레지스트리-저장:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;레지스트리 저장&lt;/h2&gt;
+
+&lt;p&gt;실행했던 콘솔 프로그램의 위치와 파라미터의 기억은 레지스트리를 이용한다.&lt;/p&gt;
+
+&lt;p&gt;레지스트리의 저장 위치는 &lt;code&gt;LOCAL_MACHINE&lt;/code&gt;과 &lt;code&gt;CURRENT_USER&lt;/code&gt;의 두 가지 선택지가 존재하는데, &lt;code&gt;LOCAL_MACHINE&lt;/code&gt;은 컴퓨터 전역 / 모든 사용자에게 적용되는 필드로 저장할 때 관리자 권한을 요구한다. &lt;code&gt;CURRENT_USER&lt;/code&gt;는 사용자 계정에 종속되는 필드로 프로그램의 환경 설정을 저장할 때 일반적으로 사용된다.&lt;/p&gt;
+
+&lt;p&gt;콘솔 프로그램 실행기는 특별한 정보를 저장하는게 아니니 &lt;code&gt;CURRENT_USER&lt;/code&gt; 필드를 이용한다.&lt;br /&gt;
+그리고, 일반 소프트웨어는 보통 &lt;code&gt;Software&lt;/code&gt; 필드를 이용하므로 서브 키를 &lt;code&gt;Software\\AppLauncher&lt;/code&gt;로 만들자.&lt;br /&gt;
+C# 코드 상에선 다음과 같다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C#&#34;&gt;// using Microsoft.Win32;
+
+RegistryKey subkey = Registry.CurrentUser.OpenSubKey(&amp;quot;Software\\AppLauncher&amp;quot;, true);
+// 먼저 OpenSubKey로 이미 서브 키가 있는지 확인한다.
+// 쓰기를 수행하려면 두 번째 인자로 true를 넘겨줘야 한다.
+if (subkey == null)
+{
+    subkey = Registry.CurrentUser.CreateSubKey(&amp;quot;Software\\AppLauncher&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;레지스트리에 저장할 것은 프로그램의 경로와 파라미터이다. 두 값 모두 &lt;code&gt;string&lt;/code&gt;이므로 &lt;code&gt;RegistryValueKind.String&lt;/code&gt;으로 지정하여 저장한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C#&#34;&gt;subkey.SetValue(&amp;quot;AppPath&amp;quot;, appPath, RegistryValueKind.String);
+subkey.SetValue(&amp;quot;Parameters&amp;quot;, tb_parameters.Text, RegistryValueKind.String);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;레지스트리를 가져올 때는, &lt;code&gt;object&lt;/code&gt; 객체를 반환하는 &lt;code&gt;RegistryKey.GetValue&lt;/code&gt;를 이용한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C#&#34;&gt;// using Microsoft.Win32;
+
+RegistryKey subkey = Registry.CurrentUser.OpenSubKey(&amp;quot;Software\\AppLauncher&amp;quot;);
+if (subkey != null)
+{
+    appPath = subkey.GetValue(&amp;quot;AppPath&amp;quot;).ToString();
+    tb_parameters.Text = subkey.GetValue(&amp;quot;Parameters&amp;quot;).ToString(); 
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;끝:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;끝&lt;/h2&gt;
+
+&lt;p&gt;콘솔 프로그램에 파라미터를 입력하여 실행하고, 그 내용을 레지스트리에 저장하는 기능이 구현되었으니 프로그램 구조를 적절히 설계만 하면 된다.&lt;/p&gt;
+
+&lt;p&gt;콘솔 프로그램을 실행하는 부분은 실행 버튼의 &lt;code&gt;Click&lt;/code&gt; 이벤트에 구현하면 될 것이고&amp;hellip;&lt;br /&gt;
+레지스트리를 가져올 때는 &lt;code&gt;Load&lt;/code&gt; 이벤트를, 기록할 때는 &lt;code&gt;Form_Closed&lt;/code&gt;를 이용하자.&lt;/p&gt;
+
+&lt;h1 id=&#34;references:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.differencebetween.net/technology/hardware-technology/difference-between-hkey_current_user-and-hkey_local_machine/&#34;&gt;http://www.differencebetween.net/technology/hardware-technology/difference-between-hkey_current_user-and-hkey_local_machine/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>땅꾸의 블로그</title>
       <link>/posts/hello-world/</link>
       <pubDate>Mon, 02 May 2016 02:06:23 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
       <guid>/posts/hello-world/</guid>
       <description>
 
-&lt;p&gt;안녕하세요. 땅꾸입니다.&lt;/p&gt;
-
-&lt;p&gt;개발과 관련된 포스트를 남기기 위해 블로그를 만들었습니다.&lt;br /&gt;
-특히, 에버노트에 개인적으로 작성했던 글들을 다시 정리하고자 하는 목적이 큽니다.&lt;/p&gt;
+&lt;h1 id=&#34;안녕하세요-땅꾸입니다:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;안녕하세요. 땅꾸입니다.&lt;/h1&gt;
 
 &lt;p&gt;이 블로그는 &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;라는 Static Website Engine을 이용해서 만들었고, &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;를 이용해 호스팅 하고 있습니다.&lt;/p&gt;
 
-&lt;p&gt;모든 글은 편의을 위해 반말로 작성되며, 오직 이 포스트만 존댓말로 작성되어 있습니다.&lt;/p&gt;
-
-&lt;h4 id=&#34;이-아래는-markdown-문서의-테스트이므로-무시하셔도-좋습니다:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;이 아래는 markdown 문서의 테스트이므로 무시하셔도 좋습니다.&lt;/h4&gt;
+&lt;h1 id=&#34;이-아래는-markdown-문서의-테스트이므로-무시하셔도-좋습니다:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;이 아래는 markdown 문서의 테스트이므로 무시하셔도 좋습니다.&lt;/h1&gt;
 
 &lt;p&gt;Windows OS의 경로 최대길이는 &lt;code&gt;MAX_PATH&lt;/code&gt;라는 상수값 260으로 제한되어 있다.&lt;/p&gt;
 

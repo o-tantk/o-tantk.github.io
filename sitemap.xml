@@ -3,8 +3,13 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2016-06-15T04:50:09+09:00</lastmod>
+    <lastmod>2016-06-17T15:40:57+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/console-app-launcher/</loc>
+    <lastmod>2016-06-17T15:40:57+09:00</lastmod>
   </url>
   
   <url>

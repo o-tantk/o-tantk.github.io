@@ -12,23 +12,18 @@
     <atom:link href="/tags/test/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>블로그 소개</title>
+      <title>땅꾸의 블로그</title>
       <link>/posts/hello-world/</link>
       <pubDate>Mon, 02 May 2016 02:06:23 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
       <guid>/posts/hello-world/</guid>
       <description>
 
-&lt;p&gt;안녕하세요. 땅꾸입니다.&lt;/p&gt;
-
-&lt;p&gt;개발과 관련된 포스트를 남기기 위해 블로그를 만들었습니다.&lt;br /&gt;
-특히, 에버노트에 개인적으로 작성했던 글들을 다시 정리하고자 하는 목적이 큽니다.&lt;/p&gt;
+&lt;h1 id=&#34;안녕하세요-땅꾸입니다:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;안녕하세요. 땅꾸입니다.&lt;/h1&gt;
 
 &lt;p&gt;이 블로그는 &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;라는 Static Website Engine을 이용해서 만들었고, &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;를 이용해 호스팅 하고 있습니다.&lt;/p&gt;
 
-&lt;p&gt;모든 글은 편의을 위해 반말로 작성되며, 오직 이 포스트만 존댓말로 작성되어 있습니다.&lt;/p&gt;
-
-&lt;h4 id=&#34;이-아래는-markdown-문서의-테스트이므로-무시하셔도-좋습니다:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;이 아래는 markdown 문서의 테스트이므로 무시하셔도 좋습니다.&lt;/h4&gt;
+&lt;h1 id=&#34;이-아래는-markdown-문서의-테스트이므로-무시하셔도-좋습니다:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;이 아래는 markdown 문서의 테스트이므로 무시하셔도 좋습니다.&lt;/h1&gt;
 
 &lt;p&gt;Windows OS의 경로 최대길이는 &lt;code&gt;MAX_PATH&lt;/code&gt;라는 상수값 260으로 제한되어 있다.&lt;/p&gt;
 
