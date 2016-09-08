@@ -153,8 +153,7 @@ if (subkey != null)
 
 &lt;p&gt;Windows OS의 경로 최대길이는 &lt;code&gt;MAX_PATH&lt;/code&gt;라는 상수값 260으로 제한되어 있다.&lt;/p&gt;
 
-&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;ko&#34; dir=&#34;ltr&#34;&gt;오지구요 지렸구요 앙김오티&lt;/p&gt;&amp;mdash; O땅꾸 (@o_tantk) &lt;a href=&#34;https://twitter.com/o_tantk/status/742203311508443136&#34;&gt;June 13, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+&lt;p&gt;{{//&amp;lt; tweet 742203311508443136 &amp;gt;}}&lt;/p&gt;
 
 &lt;p&gt;다음은 c++ 코드 샘플&lt;/p&gt;
 
