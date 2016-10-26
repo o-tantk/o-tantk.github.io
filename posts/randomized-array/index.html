@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>랜덤 뽑기 - tantk land</title>
+
+  <meta name="author" content="tantk" />
+  
+  
+
+  <meta name="generator" content="Hugo 0.15" />
+
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="tantk land">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/default.min.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  
+  
+  <meta property="og:title" content="랜덤 뽑기" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/" />
+  <meta property="og:image" content="img/avatar-icon.jpg" />
+  
+</head>
+
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">tantk land</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+          <a title="About" href="/about/">About</a>
+  	      </li>
+  	    
+      
+        
+          <li>
+          <a title="Posts" href="/posts/">Posts</a>
+  	      </li>
+  	    
+      
+        
+          <li>
+          <a title="Tags" href="/tags/">Tags</a>
+  	      </li>
+  	    
+      
+          <li>
+            <a title="Search" href="/search/"><i class="fa fa-search" aria-hidden="true"></i></a>
+  	      </li>
+      </ul>
+    </div>
+
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+      
+          <a title="tantk land" href="/">
+              <img class="avatar-img" src="/img/avatar-icon.jpg" alt="tantk land" />
+          </a>
+      
+	  </div>
+	</div>
+
+  </div>
+</nav>
+
+
+    
+
+    
+        
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="posts-heading">
+          <h1>랜덤 뽑기</h1>
+      
+        
+            <h2 class="posts-subheading">배열에서 임의의 원소를 중복되지 않도록 뽑는 방법</h2>
+        
+      
+      
+      
+        <span class="post-meta">2016-10-20 by 
+        
+            tantk
+        
+        </span>
+      
+
+      
+<ul class="tags">
+    
+    <li class="tags-li"><a href="/tags/algorithm" class="tags-a" title="Tag: Algorithm"># Algorithm</a></li>
+    
+</ul>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+          
+
+<h1 id="임의의-접근:d680e8a854a7cbad6d490c445cba2eba">임의의 접근</h1>
+
+<p>&lsquo;임의(랜덤)&lsquo;라는 말을 들으면 <code>rand()</code>를 이용해 무작위로 접근하는 방법이 가장 먼저 떠오를 것이다. 그러나 당연하게도 무작위 접근은 중복 접근을 방지하지 못 한다.<br />
+그렇다면, 중복을 피해서 배열에 임의로 접근하려면 어떻게 해야 할까.</p>
+
+<h2 id="방문-여부를-기록하는-방법:d680e8a854a7cbad6d490c445cba2eba">방문 여부를 기록하는 방법</h2>
+
+<p>가장 손쉽게 생각해낼 수 있는 방법은, 임의 접근하는 배열의 각 원소마다 방문 여부를 기록하고, 중복된 접근이면 새로운 임의 접근을 시도하도록 구현하는 것이다.</p>
+
+<p>코드로 보면 다음과 같다.</p>
+
+<pre><code class="language-c++">// arr는 std::vector를 이용한 임의의 배열.
+
+std::vector&lt;bool&gt; visited(arr.size(), false);
+
+int indexToVisit = rand() % arr.size(); // [0, size)
+while(visited[indexToVisit]) {
+    indexToVisit = rand() % arr.size();
+}
+visited[indexToVisit] = true;
+
+arr[indexToVisit] ...
+</code></pre>
+
+<p>그러나, 이 방식에는 문제가 있는데, 위 코드에서 볼 수 있듯이 방문 기록이 없는 인덱스가 나올때까지 새로운 접근을 반복 시도한다는 점이다. 이는 방문한 원소의 수가 늘어갈수록, 배열의 크기가 클수록 더 큰 문제가 된다. 배열의 대부분을 방문하고 나면, 무한에 가까운 루프를 시도할지도 모른다.</p>
+
+<h2 id="접근-영역을-한정하는-방법:d680e8a854a7cbad6d490c445cba2eba">접근 영역을 한정하는 방법</h2>
+
+<p>이 문제를, 여러개의 공이 들어있는 주머니에서 임의의 한 개를 뽑는 문제라고 생각해 보자. 공을 뽑을 때 전에 뽑았던 공을 다시 뽑지 않으려면, 뽑은 공을 주머니에 도로 넣지 않고 다른 곳에 보관해두면 된다.<br />
+그러나, 배열에서 이를 적용하기란 쉽지 않은 일이다. 원소를 마음대로 떼었다 붙였다 할 수 있는 것이 아니니까. 그렇다면 어떻게 해야 좋을까? 데이터 스왑을 이용하면 생각보다 간단히 해결할 수 있다.</p>
+
+<ol>
+<li>먼저, 배열 전체를 임의 접근할 수 있는 영역으로 설정해 놓는다.<br /></li>
+<li>방문할 임의의 원소를 영역 내에서 선택하고, 해당 원소를 영역의 끝으로 옮겨놓는다. 동시에 영역의 크기를 한 칸 줄인다.<br /></li>
+<li>옮겨놓은 원소를 사용한다.<br /></li>
+<li>새로운 임의 접근 시, 2-3을 수행한다.</li>
+</ol>
+
+<p>여기서 <strong>원소를 옮긴다</strong>의 의미가, 배열 구조 전체를 수정해야 하는 <strong>제거 후 삽입</strong>이 아닌, <strong>데이터 스왑</strong>을 이용한 방식이란 것이 중요하다.</p>
+
+<p>아래의 그림을 보면 쉽게 이해할 수 있을 것이다.
+<img src="flowchart.png" alt="배열을 섞는 과정" /></p>
+
+<p>바로 코드로 적용해 보자.</p>
+
+<pre><code class="language-c++">// arr는 std::vector를 이용한 임의의 배열.
+
+int range = arr.size();
+int randomIndex = rand() % range; // [0, range)
+
+// 데이터 스왑.
+int temp = arr[randomIndex];
+arr[randomIndex] = arr[range - 1];
+arr[range - 1] = temp;
+
+--range; // 영역을 줄인다.
+
+arr[range] ...
+</code></pre>
+
+<p><code>randomIndex</code>가 가리키는 영역 내의 임의의 원소와 <code>range</code>가 가리키는 영역 끝의 원소를 스왑함으로써, <code>range</code>가 영역 내의 임의의 원소를 가리키도록 만들었다.</p>
+
+<h3 id="인덱스-배열을-이용:d680e8a854a7cbad6d490c445cba2eba">인덱스 배열을 이용</h3>
+
+<p>그러나, 이 방법도 결국 데이터 스왑을 통해 배열에 변형을 가하고 있다.<br />
+위 예제와 같이 원본 배열이 변형되어도 되고, 배열에 저장된 데이터가 레지스터를 이용하는 기본 자료형(<code>int</code>, <code>char</code>, &hellip;)이면 전혀 문제될 것이 없지만, 객체와 같이 데이터 스왑에 필요한 비용이 큰 자료형의 경우엔 성능에 크게 영향을 끼칠 것이다. 그러므로 직접 원본 배열을 이용하는 것 보다는, 따로 임의 접근을 위한 인덱스 배열을 두고 이를 섞어 쓰는 편이 낫다.</p>
+
+<p>물론, 인덱스 배열이 차지하는 메모리도 무시할 수 없지만, 일반적으로 기본 자료형으로 인한 공간 복잡도보다는 객체 복사로 인한 시간 복잡도가 더 큰 문제가 될 것이다.</p>
+
+<p>다음은 클래스화 한 인덱스 배열의 코드이다.</p>
+
+<pre><code class="language-c++">class ShuffledIndices{
+private:
+    std::vector&lt;int&gt; indices;
+    int range;
+public:
+    ShuffledIndices(int size): indices(size), range(size) {
+        for(int i=0; i&lt;size; ++i){
+            indices[i] = i;
+        }
+    }
+
+    int getIndex() {
+        int randomIndex = rand() % range; // [0, range)
+
+        // 데이터 스왑.
+        int temp = indices[randomIndex];
+        indices[randomIndex] = indices[range - 1];
+        indices[range - 1] = temp;
+
+        // 영역을 줄인다. 더 이상 접근할 영역이 없으면 초기화 한다.
+        if(--range &lt; 1){
+            range = indices.size();
+        }
+
+        return temp;
+    }
+};
+</code></pre>
+
+<p>생성자에서 배열과 동일한 크기의 인덱스 배열을 만들고, <code>getIndex()</code>를 호출할 때마다 임의 접근할 인덱스를 반환한다. 추가된 점은, 더 이상 임의 접근할 영역이 없다면 <code>range</code>를 초기화 하고, 다시 인덱스 배열 전체를 이용하도록 만든 것이다.</p>
+
+<p>아래와 같이 쓰면 된다.</p>
+
+<pre><code class="language-c++">// arr는 std::vector를 이용한 임의의 배열.
+
+ShuffledIndices si(arr.size());
+for(int i=0; i&lt;arr.size(); ++i){
+    arr[si.getIndex()] ...
+}
+</code></pre>
+
+<h2 id="배열-섞기:d680e8a854a7cbad6d490c445cba2eba">배열 섞기</h2>
+
+<p>목적이 배열을 섞는 것이라면 굳이 인덱스 배열을 쓸 필요가 없다.</p>
+
+<pre><code class="language-c++">template &lt;typename type_t&gt;
+void shuffle(std::vector&lt;type_t&gt; &amp;arr) {
+    int range = arr.size();
+
+    for(int i=0; i&lt;arr.size(); ++i) {
+        int randomIndex = rand() % range; // [0, range)
+
+        // 데이터 스왑.
+        type_t temp = arr[randomIndex];
+        arr[randomIndex] = arr[range - 1];
+        arr[range - 1] = temp;
+
+        --range; // 영역을 줄인다.
+    }
+}
+</code></pre>
+
+<p><code>getIndex()</code>를 조금 변형하여 배열을 섞는 함수를 작성했다. 달라진 점은 원본 배열을 직접 이용한다는 점과 여러 자료형에 적용할 수 있도록 <code>template</code>을 사용한 것 뿐이다.</p>
+
+      </article>
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+            <a href="/posts/reverse-array/" data-toggle="tooltip" data-placement="top" title="Previous : 배열 뒤집기">
+            배열 뒤집기
+            
+            <br/><small>데이터 스왑에 대한 고찰</small>
+            
+            </a>
+        </li>
+        
+        
+      </ul>
+
+      
+      
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//tantk.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+    
+
+    
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/o-tantk" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+		      
+          <li>
+            <a href="mailto:tantk90@hotmail.com" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+	    	  
+          
+          
+
+    		  <li>
+      			<a href="/index.xml" title="RSS">
+      			  <span class="fa-stack fa-lg">
+        				<i class="fa fa-circle fa-stack-2x"></i>
+        				<i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      			  </span>
+      			</a>
+    		  </li>		
+
+        </ul>
+        <p class="copyright text-muted">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+            &nbsp;by tantk in 2016
+            </p>
+  	        
+    		<p class="theme-by text-muted">
+                <a href="https://gohugo.io">Hugo</a>
+    		  | Theme by
+    		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/jquery-1.11.2.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    
+<script>
+    (function() {
+    if (window.location.hostname === "localhost") {
+        return;
+    } else {
+        (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-79317002-1', 'auto');
+        ga('send', 'pageview');
+    }
+    })();
+</script>
+<noscript>Google analytics is being used.</noscript>
+
+
+</body>
+
+</html>

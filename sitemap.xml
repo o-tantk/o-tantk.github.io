@@ -3,8 +3,13 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2016-09-20T01:23:50+09:00</lastmod>
+    <lastmod>2016-10-20T18:26:57+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/randomized-array/</loc>
+    <lastmod>2016-10-20T18:26:57+09:00</lastmod>
   </url>
   
   <url>
