@@ -2,38 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/</loc>
+    <loc>https://o-tantk.github.io/</loc>
     <lastmod>2016-10-20T18:26:57+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/posts/randomized-array/</loc>
+    <loc>https://o-tantk.github.io/posts/randomized-array/</loc>
     <lastmod>2016-10-20T18:26:57+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/reverse-array/</loc>
+    <loc>https://o-tantk.github.io/posts/reverse-array/</loc>
     <lastmod>2016-09-20T01:23:50+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/console-app-launcher/</loc>
+    <loc>https://o-tantk.github.io/posts/console-app-launcher/</loc>
     <lastmod>2016-06-17T15:40:57+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/search/</loc>
+    <loc>https://o-tantk.github.io/search/</loc>
     <lastmod>2016-06-15T04:50:09+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/about/</loc>
+    <loc>https://o-tantk.github.io/about/</loc>
     <lastmod>2016-05-02T02:06:32+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/hello-world/</loc>
+    <loc>https://o-tantk.github.io/posts/hello-world/</loc>
     <lastmod>2016-05-02T02:06:23+09:00</lastmod>
   </url>
   

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C sharp winform on tantk land</title>
-    <link>/tags/c-sharp-winform/</link>
+    <link>https://o-tantk.github.io/tags/c-sharp-winform/</link>
     <description>Recent content in C sharp winform on tantk land</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>euc-kr</language>
     <managingEditor>tantk90@hotmail.com (tantk)</managingEditor>
     <webMaster>tantk90@hotmail.com (tantk)</webMaster>
     <lastBuildDate>Fri, 17 Jun 2016 15:40:57 +0900</lastBuildDate>
-    <atom:link href="/tags/c-sharp-winform/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://o-tantk.github.io/tags/c-sharp-winform/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>콘솔 프로그램 실행기</title>
-      <link>/posts/console-app-launcher/</link>
+      <link>https://o-tantk.github.io/posts/console-app-launcher/</link>
       <pubDate>Fri, 17 Jun 2016 15:40:57 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/posts/console-app-launcher/</guid>
+      <guid>https://o-tantk.github.io/posts/console-app-launcher/</guid>
       <description>
 
 &lt;h1 id=&#34;사설:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;사설&lt;/h1&gt;

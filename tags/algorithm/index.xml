@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Algorithm on tantk land</title>
-    <link>/tags/algorithm/</link>
+    <link>https://o-tantk.github.io/tags/algorithm/</link>
     <description>Recent content in Algorithm on tantk land</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>euc-kr</language>
     <managingEditor>tantk90@hotmail.com (tantk)</managingEditor>
     <webMaster>tantk90@hotmail.com (tantk)</webMaster>
     <lastBuildDate>Thu, 20 Oct 2016 18:26:57 +0900</lastBuildDate>
-    <atom:link href="/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://o-tantk.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>랜덤 뽑기</title>
-      <link>/posts/randomized-array/</link>
+      <link>https://o-tantk.github.io/posts/randomized-array/</link>
       <pubDate>Thu, 20 Oct 2016 18:26:57 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/posts/randomized-array/</guid>
+      <guid>https://o-tantk.github.io/posts/randomized-array/</guid>
       <description>
 
 &lt;h1 id=&#34;임의의-접근:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;임의의 접근&lt;/h1&gt;
@@ -158,10 +158,10 @@ void shuffle(std::vector&amp;lt;type_t&amp;gt; &amp;amp;arr) {
     
     <item>
       <title>배열 뒤집기</title>
-      <link>/posts/reverse-array/</link>
+      <link>https://o-tantk.github.io/posts/reverse-array/</link>
       <pubDate>Tue, 20 Sep 2016 01:23:50 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/posts/reverse-array/</guid>
+      <guid>https://o-tantk.github.io/posts/reverse-array/</guid>
       <description>
 
 &lt;h1 id=&#34;문제:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;문제&lt;/h1&gt;

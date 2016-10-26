@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tantk land</title>
-    <link>/</link>
+    <link>https://o-tantk.github.io/</link>
     <description>Recent content on tantk land</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>euc-kr</language>
     <managingEditor>tantk90@hotmail.com (tantk)</managingEditor>
     <webMaster>tantk90@hotmail.com (tantk)</webMaster>
     <lastBuildDate>Thu, 20 Oct 2016 18:26:57 +0900</lastBuildDate>
-    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://o-tantk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>랜덤 뽑기</title>
-      <link>/posts/randomized-array/</link>
+      <link>https://o-tantk.github.io/posts/randomized-array/</link>
       <pubDate>Thu, 20 Oct 2016 18:26:57 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/posts/randomized-array/</guid>
+      <guid>https://o-tantk.github.io/posts/randomized-array/</guid>
       <description>
 
 &lt;h1 id=&#34;임의의-접근:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;임의의 접근&lt;/h1&gt;
@@ -158,10 +158,10 @@ void shuffle(std::vector&amp;lt;type_t&amp;gt; &amp;amp;arr) {
     
     <item>
       <title>배열 뒤집기</title>
-      <link>/posts/reverse-array/</link>
+      <link>https://o-tantk.github.io/posts/reverse-array/</link>
       <pubDate>Tue, 20 Sep 2016 01:23:50 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/posts/reverse-array/</guid>
+      <guid>https://o-tantk.github.io/posts/reverse-array/</guid>
       <description>
 
 &lt;h1 id=&#34;문제:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;문제&lt;/h1&gt;
@@ -323,10 +323,10 @@ XOR을 이용한 방식은, 알아두면 &amp;lsquo;이렇게 변태같이 데�
     
     <item>
       <title>콘솔 프로그램 실행기</title>
-      <link>/posts/console-app-launcher/</link>
+      <link>https://o-tantk.github.io/posts/console-app-launcher/</link>
       <pubDate>Fri, 17 Jun 2016 15:40:57 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/posts/console-app-launcher/</guid>
+      <guid>https://o-tantk.github.io/posts/console-app-launcher/</guid>
       <description>
 
 &lt;h1 id=&#34;사설:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;사설&lt;/h1&gt;
@@ -449,19 +449,19 @@ if (subkey != null)
     
     <item>
       <title>Search</title>
-      <link>/search/</link>
+      <link>https://o-tantk.github.io/search/</link>
       <pubDate>Wed, 15 Jun 2016 04:50:09 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/search/</guid>
+      <guid>https://o-tantk.github.io/search/</guid>
       <description></description>
     </item>
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>https://o-tantk.github.io/about/</link>
       <pubDate>Mon, 02 May 2016 02:06:32 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/about/</guid>
+      <guid>https://o-tantk.github.io/about/</guid>
       <description>
 
 &lt;h1 id=&#34;tantk-땅꾸:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;tantk == 땅꾸&lt;/h1&gt;
@@ -487,10 +487,10 @@ if (subkey != null)
     
     <item>
       <title>땅꾸의 블로그</title>
-      <link>/posts/hello-world/</link>
+      <link>https://o-tantk.github.io/posts/hello-world/</link>
       <pubDate>Mon, 02 May 2016 02:06:23 +0900</pubDate>
       <author>tantk90@hotmail.com (tantk)</author>
-      <guid>/posts/hello-world/</guid>
+      <guid>https://o-tantk.github.io/posts/hello-world/</guid>
       <description>
 
 &lt;h1 id=&#34;안녕하세요-땅꾸입니다:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;안녕하세요. 땅꾸입니다.&lt;/h1&gt;
