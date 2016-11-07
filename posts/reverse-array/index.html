@@ -184,28 +184,100 @@ for(i = 0; i &lt; SIZE / 2; ++i) {
 
 <p>비트 연산 XOR을 이용하면 여분의 메모리를 사용하지 않고도 데이터를 교환할 수 있다.</p>
 
-<pre><code class="language-c">char a = 'a', b = 'b';
+<pre><code class="language-c">char a = 'A', b = 'B';
 a ^= b;
 b ^= a;
 a ^= b;
-// DONE. a == 'b', b == 'a'.
+// DONE. a == 'B', b == 'A'.
 </code></pre>
 
-<p>정말 간단하지 않은가? 한 번 <a href="http://cpp.sh">직접 실험</a> 해보기 바란다.</p>
+<p>정말 간단하다.</p>
 
 <p>어떻게 이게 가능한걸까? 이는 배타적 논리합이 갖는, 두 피연산자의 서로 다른 성질만을 남긴다는 점을 교묘하게 이용하고 있기 때문이다.<br />
-<code>a</code>가 a와 b의 공통 성질, a만 가지는 성질의 두 가지로 이루어져 있고, <code>b</code>는 a와 b의 공통 성질, b만 가지는 성질의 두 가지로 이루어져 있다고 생각하고 위의 코드에 대입해보자.</p>
+a와 b가 집합이라고 생각하고 위의 코드에 대입해보자.
+<center></p>
 
-<pre><code class="language-c">char a = (ab 공통의 성질, a의 유일한 성질), b = (ab 공통의 성질, b의 유일한 성질);
-a = (ab 공통, a의 유일) ^ (ab 공통, b의 유일); // -&gt; (a의 유일, b의 유일)
-b = (ab 공통, b의 유일) ^ (a의 유일, b의 유일); // -&gt; (ab 공통, a의 유일) == 'a'
-a = (a의 유일, b의 유일) ^ (ab 공통, a의 유일); // -&gt; (ab 공통, b의 유일) == 'b'
-</code></pre>
+<table>
+<thead>
+<tr>
+<th align="left">과정</th>
+<th align="left">a</th>
+<th align="left">b</th>
+</tr>
+</thead>
 
-<p>아주 훌륭하게 데이터가 스왑 되었다.</p>
+<tbody>
+<tr>
+<td align="left">초기화</td>
+<td align="left">(ab 공통의 성질, a의 유일한 성질)</td>
+<td align="left">(ab 공통의 성질, b의 유일한 성질)</td>
+</tr>
 
-<p>벤 다이어그램으로 보면, 더 쉽게 이해할 수 있다.
+<tr>
+<td align="left">a = a ^ b</td>
+<td align="left">(ab 공통, a의 유일) ^ (ab 공통, b의 유일)<br \>= (a의 유일, b의 유일)</td>
+<td align="left">(ab 공통의 성질, b의 유일한 성질)</td>
+</tr>
+
+<tr>
+<td align="left">b = b ^ a</td>
+<td align="left">(a의 유일, b의 유일)</td>
+<td align="left">(ab 공통, b의 유일) ^ (a의 유일, b의 유일)<br \>= (ab 공통, a의 유일)</td>
+</tr>
+
+<tr>
+<td align="left">a = a ^ b</td>
+<td align="left">(a의 유일, b의 유일) ^ (ab 공통, a의 유일)<br \>= (ab 공통, b의 유일)</td>
+<td align="left">(ab 공통, a의 유일)</td>
+</tr>
+</tbody>
+</table>
+
+<p></center></p>
+
+<p>벤 다이어그램으로 그리면 다음과 같다.
 <img src="venn_diagram.png" alt="데이터 교환 과정" /></p>
+
+<p>XOR은 교환 법칙이 성립한다는 것을 이용해 수학적으로 증명할 수도 있다.
+<center></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">과정</th>
+<th align="left">a</th>
+<th align="left">b</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">초기화</td>
+<td align="left">A</td>
+<td align="left">B</td>
+</tr>
+
+<tr>
+<td align="left">a = a ^ b</td>
+<td align="left">A ^ B</td>
+<td align="left">B</td>
+</tr>
+
+<tr>
+<td align="left">b = b ^ a</td>
+<td align="left">A ^ B</td>
+<td align="left">B ^ A ^ B<br \>= A ^ B ^ B (교환 법칙)<br \>= A</td>
+</tr>
+
+<tr>
+<td align="left">a = a ^ b</td>
+<td align="left">A ^ B ^ A<br \>= A ^ A ^ B (교환 법칙)<br \>= B</td>
+<td align="left">A</td>
+</tr>
+</tbody>
+</table>
+
+<p></center></p>
 
 <h2 id="다른-자료형에의-적용:d680e8a854a7cbad6d490c445cba2eba">다른 자료형에의 적용</h2>
 
@@ -260,9 +332,8 @@ a = (a의 유일, b의 유일) ^ (ab 공통, a의 유일); // -&gt; (ab 공통, 
 어셈블리 코드를 볼 줄 모른다고 해도, 척 보면 XOR을 이용한 방식의 코드 길이가 3줄 더 많다는 것을 알 수 있다. 이는 CPU의 연산이 세 번 더 수행된다는 뜻이다.</p>
 
 <p>실제로 얼마나 성능 차가 나는지 실험 결과를 보자.<br />
-다음은 특정 배열에 대해 무작위(<a href="https://ko.wikipedia.org/wiki/분기_예측">분기 예측</a> 방지) 원소 교환을 9999999회 수행하는데 걸린 시간이다. (3.3Ghz CPU)</p>
-
-<p><center></p>
+다음은 특정 배열에 대해 무작위(<a href="https://ko.wikipedia.org/wiki/분기_예측">분기 예측</a> 방지) 원소 교환을 9999999회 수행하는데 걸린 시간이다. (3.3Ghz CPU)
+<center></p>
 
 <table>
 <thead>
@@ -285,9 +356,8 @@ a = (a의 유일, b의 유일) ^ (ab 공통, a의 유일); // -&gt; (ab 공통, 
 </tbody>
 </table>
 
-<p></center></p>
-
-<p>확실히 임시 메모리를 이용한 방법이 더 빠르긴 하지만, 이 정도의 미미한 차이는 무시할 수 있는 수준이다.</p>
+<p></center>
+확실히 임시 메모리를 이용한 방법이 더 빠르긴 하지만, 이 정도의 미미한 차이는 무시할 수 있는 수준이다.</p>
 
 <h1 id="결론:d680e8a854a7cbad6d490c445cba2eba">결론</h1>
 
@@ -297,6 +367,12 @@ a = (a의 유일, b의 유일) ^ (ab 공통, a의 유일); // -&gt; (ab 공통, 
 XOR을 이용한 방식은, 알아두면 &lsquo;이렇게 변태같이 데이터 스왑하는 방법도 있다!&rsquo; 하고 자랑할 수도 있다.</p>
 
 <p>물론, 영상처리와 같이 10ms가 아쉬운 경우라면 임시 메모리를 이용한 방법이 더 적절하겠지만 말이다.</p>
+
+<h1 id="references:d680e8a854a7cbad6d490c445cba2eba">References</h1>
+
+<ul>
+<li><a href="https://ko.wikipedia.org/wiki/XOR_%EA%B5%90%EC%B2%B4_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">https://ko.wikipedia.org/wiki/XOR_%EA%B5%90%EC%B2%B4_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98</a></li>
+</ul>
 
       </article>
 
