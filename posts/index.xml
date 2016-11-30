@@ -8,8 +8,79 @@
     <language>euc-kr</language>
     <managingEditor>tantk90@hotmail.com (tantk)</managingEditor>
     <webMaster>tantk90@hotmail.com (tantk)</webMaster>
-    <lastBuildDate>Thu, 20 Oct 2016 18:26:57 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 15 Nov 2016 22:45:08 +0900</lastBuildDate>
     <atom:link href="https://o-tantk.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>회전 행렬(Rotation matrix)의 유도</title>
+      <link>https://o-tantk.github.io/posts/derive-rotation-matrix/</link>
+      <pubDate>Tue, 15 Nov 2016 22:45:08 +0900</pubDate>
+      <author>tantk90@hotmail.com (tantk)</author>
+      <guid>https://o-tantk.github.io/posts/derive-rotation-matrix/</guid>
+      <description>
+
+&lt;script type=&#34;text/javascript&#34;
+  src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34;&gt;
+&lt;/script&gt;
+
+&lt;h1 id=&#34;사설:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;사설&lt;/h1&gt;
+
+&lt;p&gt;회전 행렬(Rotation matrix)은 보통 한 번 구현해 놓고, 사용만 하기 때문에 좀처럼 외워지지 않았다. 특히 &lt;code&gt;cos&lt;/code&gt;, &lt;code&gt;sin&lt;/code&gt;의 위치는 기억해도 &lt;code&gt;-&lt;/code&gt;가 어느 &lt;code&gt;sin&lt;/code&gt;에 붙는지 자꾸 헷갈렸다.&lt;/p&gt;
+
+&lt;p&gt;그래서, 행렬식 자체를 외우기 보다 유도하는 방법을 외우기로 했다.&lt;/p&gt;
+
+&lt;p&gt;회전 행렬을 유도하는 방법에는 여러가지가 있다. 삼각형의 합동을 이용한 방법(고등수학), 벡터의 내적을 이용한 방법 등&amp;hellip;. 이 방법들을 사용해도 전혀 어려울 것은 없지만, 팟 하고 떠올리기엔 조금 무리가 있다.&lt;/p&gt;
+
+&lt;p&gt;좀 더 쉬운 유도 방법을 찾아보니, 다행히 &lt;strong&gt;가장 쉽다&lt;/strong&gt;고 할 수 있을 유도 방법이 존재했다. 바로 회전 행렬이 선형 변환(선형 사상)임을 이용해 유도하는 것이다.&lt;/p&gt;
+
+&lt;h2 id=&#34;선형-변환-linear-transformation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;선형 변환(Linear transformation)&lt;/h2&gt;
+
+&lt;p&gt;두 벡터 공간 사이의 변환 \( f \)와 임의의 상수 \( c \), 두 벡터 \( \alpha \), \( \beta \)가 다음을 만족하는 경우, \( f \)를 선형 변환이라 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;\( f\left( \alpha +\beta \right) =f\left( \alpha \right) +f\left( \beta \right) \)&lt;/li&gt;
+&lt;li&gt;\( f\left( c\alpha \right) =cf\left( \alpha \right) \)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;선형 변환을 만족하는 대표적인 변환이 바로 회전이며, 확대(Scaling), 찌그러트림(Shear), 대칭(Reflection), 사영(Projection) 등도 여기에 해당한다.&lt;/p&gt;
+
+&lt;p&gt;참고로 이동(Translation)은 선형 변환이 아니다. 때문에 하나의 행렬로 변환을 표현하기 위해, 동차좌표계(Homogeneous coordinates)를 이용한 아핀 변환(Affine transformation)이 사용되는 것이다.&lt;/p&gt;
+
+&lt;h1 id=&#34;유도:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;유도&lt;/h1&gt;
+
+&lt;p&gt;먼저 기저 벡터인 \( ( 1, 0 ) \)과 \( ( 0, 1 ) \)를 \( \theta \)만큼 회전시켜 보자.
+&lt;img src=&#34;graph.png&#34; alt=&#34;기저 벡터의 회전&#34; /&gt;
+그림과 같이 \( ( 1, 0 ) \)을 \( \theta \)만큼 회전하면 \( ( \cos { \theta }, \sin { \theta } ) \), \( ( 0, 1 ) \)을 \( \theta \)만큼 회전하면 \( ( -\sin { \theta }, \cos { \theta } ) \)이 된다.&lt;/p&gt;
+
+&lt;p&gt;그리고, 회전 행렬 \( R \)은 선형 변환이므로 다음이 성립된다.&lt;/p&gt;
+
+&lt;div&gt;$$
+\begin{align*} R\begin{bmatrix} x \\ y \end{bmatrix} &amp;=R\begin{bmatrix} x \\ 0 \end{bmatrix}+R\begin{bmatrix} 0 \\ y \end{bmatrix}\\ &amp;=R\begin{bmatrix} 1 \\ 0 \end{bmatrix}x+R\begin{bmatrix} 0 \\ 1 \end{bmatrix}y \end{align*}
+$$&lt;/div&gt;
+
+&lt;p&gt;여기서 \( R (1, 0) \)과 \( R (0, 1) \)이 바로 \( ( \cos { \theta }, \sin { \theta } ) \), \( ( -\sin { \theta }, \cos { \theta } ) \)이므로, 대입하면 유도가 끝난다.&lt;/p&gt;
+
+&lt;div&gt;$$
+\begin{align*} R\begin{bmatrix} x \\ y \end{bmatrix} &amp;=\begin{bmatrix} \cos { \theta }  \\ \sin { \theta } \end{bmatrix}x+\begin{bmatrix} -\sin { \theta } \\ \cos { \theta } \end{bmatrix}y\\ &amp;=\begin{bmatrix} \cos { \theta } &amp; -\sin { \theta } \\ \sin { \theta } &amp; \cos { \theta } \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix} \\ \\ R &amp;=\begin{bmatrix} \cos { \theta } &amp; -\sin { \theta } \\ \sin { \theta } &amp; \cos { \theta } \end{bmatrix} \end{align*}
+$$&lt;/div&gt;
+
+&lt;p&gt;정말 쉽다.&lt;/p&gt;
+
+&lt;p&gt;3차원의 경우는 회전축에 대해 \( R \overrightarrow { v } = \overrightarrow { v } \)이므로 더 생각할 것도 없다.&lt;/p&gt;
+
+&lt;div&gt;$$
+\begin{align*} { R }_{ z }\begin{bmatrix} x \\ y \\ z \end{bmatrix} &amp;={ R }_{ z }\begin{bmatrix} x \\ 0 \\ 0 \end{bmatrix}+{ R }_{ z }\begin{bmatrix} 0 \\ y \\ 0 \end{bmatrix}+{ R }_{ z }\begin{bmatrix} 0 \\ 0 \\ z \end{bmatrix}\\ &amp;={ R }_{ z }\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}x+{ R }_{ z }\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}y+{ R }_{ z }\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}z\\ &amp;=\begin{bmatrix} \cos { \theta  } \\ \sin { \theta } \\ 0 \end{bmatrix}x+\begin{bmatrix} -\sin { \theta } \\ \cos { \theta } \\ 0 \end{bmatrix}y+\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}z\\ &amp;=\begin{bmatrix} \cos { \theta }  &amp; -\sin { \theta } &amp; 0 \\ \sin { \theta } &amp; \cos { \theta } &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\begin{bmatrix} x \\ y \\ z \end{bmatrix} \\ \\ { R }_{ z } &amp;=\begin{bmatrix} \cos { \theta } &amp; -\sin { \theta } &amp; 0 \\ \sin { \theta } &amp; \cos { \theta } &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix} \end{align*}
+$$&lt;/div&gt;
+
+&lt;p&gt;같은 방법으로 \( { R }_{ x } \), \( { R }_{ y } \)도 쉽게 구할 수 있다.&lt;/p&gt;
+
+&lt;h1 id=&#34;references:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://ko.wikipedia.org/wiki/선형변환&#34;&gt;https://ko.wikipedia.org/wiki/선형변환&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>랜덤 뽑기</title>
@@ -316,7 +387,7 @@ a와 b가 집합이라고 생각하고 위의 코드에 대입해보자.
 &lt;p&gt;캐스트 연산자 때문에 뭔가 복잡해 보이지만, float 자료형이 int 자료형인 것처럼 컴파일러를 속였을 뿐이다.&lt;br /&gt;
 비록 정수형 자료형의 크기와 동일한 크기를 가진 자료형만 해당되지만, 어엿하게 실수형 자료형에도 적용할 수 있다는 말이다.&lt;/p&gt;
 
-&lt;h2 id=&#34;xor을-이용하면-정말-빠를까:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;XOR을 이용하면 정말 빠를까?&lt;/h2&gt;
+&lt;h2 id=&#34;xor을-이용하면-더-좋을까:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;XOR을 이용하면 더 좋을까?&lt;/h2&gt;
 
 &lt;p&gt;그렇다면, XOR을 이용한 방식이 정말 더 좋은지 확인해보자.&lt;/p&gt;
 
@@ -392,7 +463,7 @@ XOR을 이용한 방식은, 알아두면 &amp;lsquo;이렇게 변태같이 데�
 &lt;h1 id=&#34;references:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;References&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://ko.wikipedia.org/wiki/XOR_%EA%B5%90%EC%B2%B4_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&#34;&gt;https://ko.wikipedia.org/wiki/XOR_%EA%B5%90%EC%B2%B4_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ko.wikipedia.org/wiki/XOR_교체_알고리즘&#34;&gt;https://ko.wikipedia.org/wiki/XOR_교체_알고리즘&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

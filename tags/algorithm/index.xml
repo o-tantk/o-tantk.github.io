@@ -316,7 +316,7 @@ a와 b가 집합이라고 생각하고 위의 코드에 대입해보자.
 &lt;p&gt;캐스트 연산자 때문에 뭔가 복잡해 보이지만, float 자료형이 int 자료형인 것처럼 컴파일러를 속였을 뿐이다.&lt;br /&gt;
 비록 정수형 자료형의 크기와 동일한 크기를 가진 자료형만 해당되지만, 어엿하게 실수형 자료형에도 적용할 수 있다는 말이다.&lt;/p&gt;
 
-&lt;h2 id=&#34;xor을-이용하면-정말-빠를까:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;XOR을 이용하면 정말 빠를까?&lt;/h2&gt;
+&lt;h2 id=&#34;xor을-이용하면-더-좋을까:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;XOR을 이용하면 더 좋을까?&lt;/h2&gt;
 
 &lt;p&gt;그렇다면, XOR을 이용한 방식이 정말 더 좋은지 확인해보자.&lt;/p&gt;
 
@@ -392,7 +392,7 @@ XOR을 이용한 방식은, 알아두면 &amp;lsquo;이렇게 변태같이 데�
 &lt;h1 id=&#34;references:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;References&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://ko.wikipedia.org/wiki/XOR_%EA%B5%90%EC%B2%B4_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&#34;&gt;https://ko.wikipedia.org/wiki/XOR_%EA%B5%90%EC%B2%B4_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ko.wikipedia.org/wiki/XOR_교체_알고리즘&#34;&gt;https://ko.wikipedia.org/wiki/XOR_교체_알고리즘&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
