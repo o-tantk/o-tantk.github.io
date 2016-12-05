@@ -44,6 +44,8 @@
 
 &lt;p&gt;선형 변환을 만족하는 대표적인 변환이 바로 회전이며, 확대(Scaling), 찌그러트림(Shear), 대칭(Reflection), 사영(Projection) 등도 여기에 해당한다.&lt;/p&gt;
 
+&lt;p&gt;\( \theta \)만큼 회전하고 \( \omega \)만큼 회전하든, \( \omega \)만큼 회전하고 \( \theta \)만큼 회전하든, 그 결과는 \( (\theta + \omega) \)임을 생각해보면, 회전이 선형 변환임을 금새 알 수 있다.&lt;/p&gt;
+
 &lt;p&gt;참고로 이동(Translation)은 선형 변환이 아니다. 때문에 하나의 행렬로 변환을 표현하기 위해, 동차좌표계(Homogeneous coordinates)를 이용한 아핀 변환(Affine transformation)이 사용되는 것이다.&lt;/p&gt;
 
 &lt;h1 id=&#34;유도:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;유도&lt;/h1&gt;

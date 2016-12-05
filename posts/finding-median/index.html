@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>중앙값(Median) 찾기 - tantk land</title>
+
+  <meta name="author" content="tantk" />
+  
+  
+
+  <meta name="generator" content="Hugo 0.15" />
+
+  <link rel="alternate" href="https://o-tantk.github.io/index.xml" type="application/rss+xml" title="tantk land">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://o-tantk.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://o-tantk.github.io/css/main.css" />
+  <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/default.min.css">
+  <link rel="shortcut icon" href="https://o-tantk.github.io/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://o-tantk.github.io/img/favicon.ico" type="image/x-icon">
+  
+  
+  <meta property="og:title" content="중앙값(Median) 찾기" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/" />
+  <meta property="og:image" content="img/avatar-icon.jpg" />
+  
+</head>
+
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://o-tantk.github.io/">tantk land</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+          <a title="About" href="/about/">About</a>
+  	      </li>
+  	    
+      
+        
+          <li>
+          <a title="Posts" href="/posts/">Posts</a>
+  	      </li>
+  	    
+      
+        
+          <li>
+          <a title="Tags" href="/tags/">Tags</a>
+  	      </li>
+  	    
+      
+          <li>
+            <a title="Search" href="https://o-tantk.github.io/search/"><i class="fa fa-search" aria-hidden="true"></i></a>
+  	      </li>
+      </ul>
+    </div>
+
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+      
+          <a title="tantk land" href="https://o-tantk.github.io/">
+              <img class="avatar-img" src="https://o-tantk.github.io/img/avatar-icon.jpg" alt="tantk land" />
+          </a>
+      
+	  </div>
+	</div>
+
+  </div>
+</nav>
+
+
+    
+
+    
+        
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="posts-heading">
+          <h1>중앙값(Median) 찾기</h1>
+      
+        
+            <h2 class="posts-subheading">Heap을 이용한 중앙값 찾기</h2>
+        
+      
+      
+      
+        <span class="post-meta">2016-11-12 by 
+        
+            tantk
+        
+        </span>
+      
+
+      
+<ul class="tags">
+    
+    <li class="tags-li"><a href="https://o-tantk.github.io/tags/algorithm" class="tags-a" title="Tag: Algorithm"># Algorithm</a></li>
+    
+</ul>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+          
+
+<h1 id="중앙값-median:d680e8a854a7cbad6d490c445cba2eba">중앙값(Median)</h1>
+
+<p>중앙값이란, 어떤 배열을 정렬했을 때 정 가운데에 위치하는 값을 말한다. (수학적으로는 확률분포가 0.5인 값이다.)<br />
+예를들어, <code>[1, 2, 3]</code>의 배열에서는 <code>2</code>가 중앙값이다.</p>
+
+<p>원소의 개수가 짝수인 경우엔, 가운데 두 원소의 평균이 중앙값이 된다.<br />
+<code>[1, 2, 3, 4]</code>에서는 <code>2</code>와 <code>3</code>의 평균인 <code>2.5</code>가 중앙값인 것이다.</p>
+
+<h2 id="중앙값-찾기:d680e8a854a7cbad6d490c445cba2eba">중앙값 찾기</h2>
+
+<p>중앙값은 <strong>정렬된 배열</strong>에서 찾아야 한다.<br />
+배열이 정렬되어 있다면 땡큐지만, 정렬되어 있지 않다면 정렬해야 하므로, 가장 먼저 정렬을 수행해야 한다.</p>
+
+<p>정렬 후엔, 단순히 배열 크기의 절반에 해당하는 인덱스에 접근해 반환하면 된다.</p>
+
+<pre><code class="language-c++">float median(vector&lt;int&gt; &amp;arr){
+    sort(arr.begin(), arr.end());
+
+    if(arr.size() % 2 == 1){
+        return (float)arr[arr.size() / 2];
+    }
+    else{
+        return ((float)arr[arr.size() / 2] + (float)arr[arr.size() / 2 + 1]) / 2.0f; 
+    }
+}
+</code></pre>
+
+<p><code>int</code>형 자료를 갖는 배열임에도 <code>float</code>형을 반환하는 이유는, 짝수개에 대한 중앙값의 정의 때문이다. 물론 소수점 이하가 필요 없다면 그대로 반환해도 되겠다. 반올림이 아닌 절삭인 것도 감안하고.</p>
+
+<h2 id="실시간으로-중앙값-찾기:d680e8a854a7cbad6d490c445cba2eba">실시간으로 중앙값 찾기</h2>
+
+<p>중앙값을 찾기 위해선 배열의 정렬이 선행되어야 한다. 그렇다면, 데이터가 지속적으로 추가/삭제되고 있는 상황에서 중앙값을 찾으려면 어떻게 해야 할까? 위의 방법을 이용한다면, 중앙값을 찾을 때마다 배열 전체에 대한 정렬을 시도하므로 엄청난 시간 낭비가 아닐 수 없다.</p>
+
+<p>그래서 값을 찾을 때마다 정렬하기 보다는, 자료구조 자체를 바꿔야 하겠다. 수행 속도가 훨씬 빠른, 추가/삭제가 정렬과 함께 이루어지는 자료 구조를 이용하는 것이다. 추가/삭제가 정렬과 함께 이루어지는 자료 구조는 여러가지가 있지만, 중앙값을 찾는 데는 <a href="https://ko.wikipedia.org/wiki/힙_(자료_구조)">Heap</a>을 이용할 수 있다.</p>
+
+<h3 id="알고리즘:d680e8a854a7cbad6d490c445cba2eba">알고리즘</h3>
+
+<ul>
+<li>Max heap은 최대값에 바로 접근할 수 있다.</li>
+<li>Min heap은 최소값에 바로 접근할 수 있다.</li>
+</ul>
+
+<p>Heap의 두 성질 이용해, 중앙값보다 작은 값들은 Max heap에, 중앙값보다 큰 값들은 Min heap에 저장하는 방식으로 중앙값을 찾는 알고리즘을 구현할 수 있다. 아래의 상황을 보자.
+<img src="diagram00.png" alt="첫 번째 단계" />
+먼저, 작은 값과 큰 값을 나눌 기준이 필요하다. 중앙값이 아니라 굳이 기준이라 표현한 이유는, 개수가 짝수일 때를 고려해서이다.<br />
+기준은 어차피 가운데에 있으니, 변수를 따로 만들 필요 없이 Max heap 또는 Min heap에 포함시키면 된다. 여기선 Max heap을 이용했다.
+<img src="diagram01.png" alt="두 번째 단계" />
+첫 번째 입력은 별 수 없이 기준이 된다. 홀수개이므로 중앙값은 <code>3</code>이다.<br />
+나머지는 기준보다 작다면 Max heap에, 크다면 Min heap에 넣는다. 그리고, Max heap과 Min heap의 크기가 균형되도록 조절한다. 다만, 기준을 고려해 기준을 가진쪽이 하나는 더 클 수 있도록 허용한다.
+<img src="diagram02.png" alt="세 번째 단계" />
+<img src="diagram03.png" alt="네 번째 단계" />
+<code>2</code>는 기준보다 작으니 Max heap에 넣지만 균형을 맞추기 위해 Max heap의 최대값을 이동시킨다. 짝수개이므로 중앙값은 <code>2</code>와 <code>3</code>의 평균이다.
+<img src="diagram04.png" alt="다섯 번째 단계" />
+<img src="diagram05.png" alt="여섯 번째 단계" />
+<code>4</code>는 기준보다 크니 Min heap에 넣지만 균형을 맞추기 위해 Min heap의 최소값을 이동시킨다. 홀수개이므로 중앙값은 <code>3</code>이다.
+<img src="diagram06.png" alt="일곱 번째 단계" />
+<img src="diagram07.png" alt="여덟 번째 단계" />
+<code>1</code>은 기준보다 작으니 Max heap에 넣지만 균형을 맞추기 위해 Max heap의 최대값을 이동시킨다. 짝수개이므로 중앙값은 <code>2</code>와 <code>3</code>의 평균이다.</p>
+
+<p>입력이 들어올 때마다 한 번의 데이터 이동만으로 실시간으로 중앙값을 찾고 있다. Heap의 시간복잡도가 <code>O(log N)</code>이므로 최악의 경우라도 &lsquo;삽입 + 삭제 + 삽입&rsquo;의 <code>O(3 log N)</code>이다.</p>
+
+<h3 id="구현:d680e8a854a7cbad6d490c445cba2eba">구현</h3>
+
+<p>Heap을 직접 구현하는 귀찮은 짓을 할 수도 있겠지만, STL에서 이미 <code>priority_queue</code>라는 이름으로 제공하고 있으므로 이용하면 된다.</p>
+
+<pre><code class="language-c++">priority_queue&lt;int&gt; max_heap;
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; min_heap;
+</code></pre>
+
+<p><code>priority_queue</code>는 기본으로 선언하면 오름차순 정렬인 Max heap이 된다. <code>greater&lt;int&gt;</code>를 템플릿 인자로 주면 내림차순 정렬인 Min heap을 선언할 수 있다.<br />
+두 번째 템플릿 인자는 <code>priority_queue</code>의 컨테이너를 결정한다. 무난하게 <code>vector</code>로 선언해주면 된다. <code>priority_queue</code>에 대한 자세한 설명을 원한다면 <a href="http://www.cplusplus.com/reference/queue/priority_queue/?kw=priority_queue">레퍼런스</a>를 참고하길 바란다.</p>
+
+<p>다음의 코드는 <code>int number</code>에 <code>cin</code>을 통해서 지속적으로 값을 읽어들이는 상황이라 가정한 것이다.</p>
+
+<pre><code class="language-c++">priority_queue&lt;int&gt; smaller; // Max heap
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; bigger; // Min heap
+
+int number;
+cin &gt;&gt; number; // 첫 번째 입력.
+smaller.push(number); // 기준이 smaller에 있다고 가정하므로, 첫 입력은 smaller에 넣는다.
+
+while(true){
+    cin &gt;&gt; number; // 두 번째 이후의 입력.
+    if(number &lt; smaller.top()){
+        // 기준보다 작은 경우 smaller에 넣는다.
+        smaller.push(number);
+    }
+    else{
+        // 기준보다 큰 경우 bigger에 넣는다.
+        bigger.push(number);
+    }
+
+    // smaller의 크기와 bigger의 크기가 같거나, smaller가 크기가 하나 더 크게 유지되도록 데이터를 옮긴다. 
+    if(smaller.size() &lt; bigger.size()){
+        smaller.push(bigger.top());
+        bigger.pop();
+    }
+    else if(smaller.size() &gt; bigger.size() + 1){
+        bigger.push(smaller.top());
+        smaller.pop();
+    }
+
+    // smaller와 bigger의 크기가 같다면 총 개수는 짝수이다.
+    if(smaller.size() == bigger.size()){
+        cout &lt;&lt; ((float)smaller.top() + (float)bigger.top()) * 0.5f &lt;&lt; endl;
+    }
+    else{
+        cout &lt;&lt; smaller.top() &lt;&lt; endl;
+    }
+}
+</code></pre>
+
+<h2 id="세-수-triple-의-중앙값-찾기:d680e8a854a7cbad6d490c445cba2eba">세 수(Triple)의 중앙값 찾기</h2>
+
+<p>퀵정렬을 설계할 때 Pivot을 선택하는 방법에는 여러가지가 있지만, 대표적으로는 임의의 한 원소를 선택하는 방법과 <strong>처음, 중간, 끝의 원소 중 중앙값인 원소를 선택하는 방법</strong>의 두 가지가 있다.</p>
+
+<p>퀵정렬에서 써먹을 수 있도록 세 수 중에서 중앙값을 찾는 방법을 생각해보자.<br />
+기본적인 방법은, 다량의 조건문을 이용해 찾는 것이다.</p>
+
+<pre><code class="language-c++">int median(int a, int b, int c){
+    if (a &gt; b){
+        if (b &gt; c)          return b;
+        else if (a &gt; c)     return c;
+        else                return a;
+    }
+    else{
+        if (a &gt; c)          return a;
+        else if (b &gt; c)     return c;
+        else                return b;
+    }
+}
+</code></pre>
+
+<p>조건부 연산자(<code>exp?exp:exp</code>)를 이용하면 코드가 좀 더 짧아지겠지만, 해석하기 어려워 진다.</p>
+
+<p>교환 법칙이 성립되는 XOR의 성질을 이용한다면, 분기 없이 중앙값을 찾을 수도 있다.</p>
+
+<pre><code class="language-c++">int median(int a, int b, int c){
+    int maximum = max(max(a, b), c);
+    int minimum = min(min(a, b), c);
+    return a ^ b ^ c ^ maximium ^ minimum;
+}
+</code></pre>
+
+<p>세 수 모두를 XOR로 결합하고, 다시 최대값 최소값을 XOR로 제외함으로써 중앙값을 구했다.<br />
+XOR에 관한 내용은 <a href="/posts/reverse-array/">이 포스트</a>를 참조하길 바란다.</p>
+
+      </article>
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+            <a href="https://o-tantk.github.io/posts/randomized-array/" data-toggle="tooltip" data-placement="top" title="Previous : 랜덤 뽑기">
+            랜덤 뽑기
+            
+            <br/><small>배열에서 임의의 원소를 중복되지 않도록 뽑는 방법</small>
+            
+            </a>
+        </li>
+        
+        
+        <li class="next">
+        <a href="https://o-tantk.github.io/posts/derive-rotation-matrix/" data-toggle="tooltip" data-placement="top" title="Next : 회전 행렬(Rotation matrix)의 유도">
+            회전 행렬(Rotation matrix)의 유도
+            
+            <br/><small>선형 변환을 이용한 회전 행렬의 유도</small>
+            
+        </a>
+        </li>
+        
+      </ul>
+
+      
+      
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//tantk.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+    
+
+    
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/o-tantk" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+		      
+          <li>
+            <a href="mailto:tantk90@hotmail.com" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+	    	  
+          
+          
+
+    		  <li>
+      			<a href="https://o-tantk.github.io/index.xml" title="RSS">
+      			  <span class="fa-stack fa-lg">
+        				<i class="fa fa-circle fa-stack-2x"></i>
+        				<i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      			  </span>
+      			</a>
+    		  </li>		
+
+        </ul>
+        <p class="copyright text-muted">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+            &nbsp;by tantk in 2016
+            </p>
+  	        
+    		<p class="theme-by text-muted">
+                <a href="https://gohugo.io">Hugo</a>
+    		  | Theme by
+    		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://o-tantk.github.io/js/jquery-1.11.2.min.js"></script>
+<script src="https://o-tantk.github.io/js/bootstrap.min.js"></script>
+<script src="https://o-tantk.github.io/js/main.js"></script>
+<script src="https://o-tantk.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    
+<script>
+    (function() {
+    if (window.location.hostname === "localhost") {
+        return;
+    } else {
+        (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-79317002-1', 'auto');
+        ga('send', 'pageview');
+    }
+    })();
+</script>
+<noscript>Google analytics is being used.</noscript>
+
+
+</body>
+
+</html>
