@@ -29,11 +29,10 @@
 
 &lt;p&gt;결국 C# winform을 이용해, 콘솔 프로그램의 위치를 기억하고 파라미터를 입력할 수 있는 간단한 프로그램을 작성하기로 했다.&lt;/p&gt;
 
-&lt;h1 id=&#34;프로그램-스크린샷:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;프로그램 스크린샷&lt;/h1&gt;
+&lt;h1 id=&#34;프로그램:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;프로그램&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&#34;app.png&#34; alt=&#34;프로그램 스크린샷&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;목표:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;목표&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;app.png&#34; alt=&#34;프로그램 스크린샷&#34; /&gt;
+&lt;center&gt;&lt;a href=&#34;https://github.com/o-tantk/ConsoleAppLauncher&#34;&gt;https://github.com/o-tantk/ConsoleAppLauncher&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;콘솔 프로그램의 위치와 입력했던 파라미터를 기억한다.&lt;/li&gt;

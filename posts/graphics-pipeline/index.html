@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>회전 행렬(Rotation matrix)의 유도 - tantk land</title>
+  <title>그래픽스 렌더링 파이프라인 (Graphics Rendering Pipeline) - tantk land</title>
 
   <meta name="author" content="tantk" />
   
@@ -25,7 +25,7 @@
   <link rel="icon" href="https://o-tantk.github.io/img/favicon.ico" type="image/x-icon">
   
   
-  <meta property="og:title" content="회전 행렬(Rotation matrix)의 유도" />
+  <meta property="og:title" content="그래픽스 렌더링 파이프라인 (Graphics Rendering Pipeline)" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="/" />
   <meta property="og:image" content="img/avatar-icon.jpg" />
@@ -104,15 +104,15 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="posts-heading">
-          <h1>회전 행렬(Rotation matrix)의 유도</h1>
+          <h1>그래픽스 렌더링 파이프라인 (Graphics Rendering Pipeline)</h1>
       
         
-            <h2 class="posts-subheading">선형 변환을 이용한 회전 행렬의 유도</h2>
+            <h2 class="posts-subheading">OpenGL 렌더링 파이프라인</h2>
         
       
       
       
-        <span class="post-meta">2016-11-15 by 
+        <span class="post-meta">2016-12-06 by 
         
             tantk
         
@@ -123,8 +123,6 @@
 <ul class="tags">
     
     <li class="tags-li"><a href="https://o-tantk.github.io/tags/computer-graphics" class="tags-a" title="Tag: Computer Graphics"># Computer Graphics</a></li>
-    
-    <li class="tags-li"><a href="https://o-tantk.github.io/tags/mathematics" class="tags-a" title="Tag: Mathematics"># Mathematics</a></li>
     
 </ul>
 
@@ -145,67 +143,111 @@
       <article role="main" class="blog-post">
           
 
-<script type="text/javascript"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
 <h1 id="사설:d680e8a854a7cbad6d490c445cba2eba">사설</h1>
 
-<p>회전 행렬(Rotation matrix)은 보통 한 번 구현해 놓고, 사용만 하기 때문에 좀처럼 외워지지 않았다. 특히 <code>cos</code>, <code>sin</code>의 위치는 기억해도 <code>-</code>가 어느 <code>sin</code>에 붙는지 자꾸 헷갈렸다.</p>
+<p>컴퓨터 그래픽스 분야를 처음 공부하면, 삼각형 그리기부터 시작해서 버텍스 트랜스폼, 라이팅, 쉐이딩 등 <a href="https://www.opengl.org/wiki/Fixed_Function_Pipeline">고정 함수 파이프라인(Fixed Function Pipeline)</a>을 이용하는 방법부터 익히게 된다. 그리고 이런 방법이 어느정도 익숙해지면, Programmable Pipeline을 이용한 쉐이더 프로그래밍을 시작한다.</p>
 
-<p>그래서, 행렬식 자체를 외우기 보다 유도하는 방법을 외우기로 했다.</p>
+<p>그러나 쉐이더 프로그래밍에 입문하고 나서도, 렌더링 파이프라인을 제대로 이해하지 못해 그저 결과만 낼 수 있도록 구현 방법만 익히는 경우가 많다. 결국 이 상태가 유지된 채로 고급 쉐이딩 기술을 구현해야 하는 때가 오고, 그래픽스 파이프라인을 이해하지 않고선 구현조차 못 하는 지경에 이르기 때문에 처음부터 다시 공부하게 된다.</p>
 
-<p>회전 행렬을 유도하는 방법에는 여러가지가 있다. 삼각형의 합동을 이용한 방법(고등수학), 벡터의 내적을 이용한 방법 등&hellip;. 이 방법들을 사용해도 전혀 어려울 것은 없지만, 팟 하고 떠올리기엔 조금 무리가 있다.</p>
+<p>물론, 학교 커리큘럼에서 그래픽스 파이프라인에 대해 다루지 않는 것은 아니다. 다만, 막 걸음마를 뗐는데 전체 과정을 아우르는 개념을 이해하는 것도 어렵고, 사용하는 방법을 가르치기에도 시간이 빠듯하기 때문인지 학생들에게 완벽한 이해를 바라지 않는 것 같다. (적어도 내가 다닌 학교에서는 그러했다.)</p>
 
-<p>좀 더 쉬운 유도 방법을 찾아보니, 다행히 <strong>가장 쉽다</strong>고 할 수 있을 유도 방법이 존재했다. 바로 회전 행렬이 선형 변환(선형 사상)임을 이용해 유도하는 것이다.</p>
+<p>그래서 컴퓨터 그래픽스 분야를 공부한다면 반드시 꿰고 있어야할 <strong>그래픽스 렌더링 파이프라인</strong>을 정리해보고자 한다.<br />
+다만, 각각의 단계에 대한 심도있는 이해는 여전히 공부가 필요할 것이다.</p>
 
-<h2 id="선형-변환-linear-transformation:d680e8a854a7cbad6d490c445cba2eba">선형 변환(Linear transformation)</h2>
+<h1 id="opengl-렌더링-파이프라인:d680e8a854a7cbad6d490c445cba2eba">OpenGL 렌더링 파이프라인</h1>
 
-<p>두 벡터 공간 사이의 변환 \( f \)와 임의의 상수 \( c \), 두 벡터 \( \alpha \), \( \beta \)가 다음을 만족하는 경우, \( f \)를 선형 변환이라 한다.</p>
+<p>사용할 줄 아는 그래픽스 라이브러리가 OpenGL이므로 OpenGL의 렌더링 파이프라인을 통해 설명한다. DirectX는 써본 적이 없어 잘 모르지만, 기본적인 골격은 비슷할 것이다.</p>
+
+<p>OpenGL 렌더링 파이프라인의 단계를 나열했다. 괄호는 생략 가능한 단계이다.</p>
+
+<blockquote>
+<ol>
+<li>Vertex Specification</li>
+<li>Vertex Processing
+
+<ol>
+<li>Vertex Shader</li>
+<li>[Tessellation]</li>
+<li>[Geometry Shader]</li>
+</ol></li>
+<li>Vertex Post-Processing
+
+<ol>
+<li>[Transform Feedback]</li>
+<li>Clipping, Perspective Divide, Viewport Transform</li>
+</ol></li>
+<li>Primitive Assembly
 
 <ul>
-<li>\( f\left( \alpha +\beta \right) =f\left( \alpha \right) +f\left( \beta \right) \)</li>
-<li>\( f\left( c\alpha \right) =cf\left( \alpha \right) \)</li>
-</ul>
+<li>[Face Culling]</li>
+</ul></li>
+<li>Rasterization</li>
+<li>[Fragment Shader]</li>
+<li>Per-sample Operations
 
-<p>선형 변환을 만족하는 대표적인 변환이 바로 회전이며, 확대(Scaling), 찌그러트림(Shear), 대칭(Reflection), 사영(Projection) 등도 여기에 해당한다.</p>
+<ol>
+<li>[Scissor Test]</li>
+<li>[Stencil Test]</li>
+<li>[Depth Test]</li>
+<li>[Blending]</li>
+<li>[Logical Operation]</li>
+<li>Write Mask</li>
+</ol></li>
+</ol>
+</blockquote>
 
-<p>\( \theta \)만큼 회전하고 \( \omega \)만큼 회전하든, \( \omega \)만큼 회전하고 \( \theta \)만큼 회전하든, 그 결과는 \( (\theta + \omega) \)임을 생각해보면, 회전이 선형 변환임을 금새 알 수 있다.</p>
+<h2 id="vertex-specification:d680e8a854a7cbad6d490c445cba2eba">Vertex Specification</h2>
 
-<p>참고로 이동(Translation)은 선형 변환이 아니다. 때문에 하나의 행렬로 변환을 표현하기 위해, 동차좌표계(Homogeneous coordinates)를 이용한 아핀 변환(Affine transformation)이 사용되는 것이다.</p>
+<p>응용프로그램으로부터 버텍스를 읽고 렌더링(입력 데이터를 해석)한다.</p>
 
-<h1 id="유도:d680e8a854a7cbad6d490c445cba2eba">유도</h1>
+<h2 id="vertex-processing:d680e8a854a7cbad6d490c445cba2eba">Vertex Processing</h2>
 
-<p>먼저 기저 벡터인 \( ( 1, 0 ) \)과 \( ( 0, 1 ) \)를 \( \theta \)만큼 회전시켜 보자.
-<img src="graph.png" alt="기저 벡터의 회전" />
-그림과 같이 \( ( 1, 0 ) \)을 \( \theta \)만큼 회전하면 \( ( \cos { \theta }, \sin { \theta } ) \), \( ( 0, 1 ) \)을 \( \theta \)만큼 회전하면 \( ( -\sin { \theta }, \cos { \theta } ) \)이 된다.</p>
+<h4 id="vertex-shader:d680e8a854a7cbad6d490c445cba2eba">Vertex Shader</h4>
 
-<p>그리고, 회전 행렬 \( R \)은 선형 변환이므로 다음이 성립된다.</p>
+<h4 id="tessellation:d680e8a854a7cbad6d490c445cba2eba">Tessellation</h4>
 
-<div>$$
-\begin{align*} R\begin{bmatrix} x \\ y \end{bmatrix} &=R\begin{bmatrix} x \\ 0 \end{bmatrix}+R\begin{bmatrix} 0 \\ y \end{bmatrix}\\ &=R\begin{bmatrix} 1 \\ 0 \end{bmatrix}x+R\begin{bmatrix} 0 \\ 1 \end{bmatrix}y \end{align*}
-$$</div>
+<p>번역하면 <a href="https://ko.wikipedia.org/wiki/쪽매맞춤">쪽매맞춤</a>이지만, 컴퓨터 그래픽스에서 사용되는 기술은 <strong>테셀레이션</strong>이라고 영문 그대로 읽는다.</p>
 
-<p>여기서 \( R (1, 0) \)과 \( R (0, 1) \)이 바로 \( ( \cos { \theta }, \sin { \theta } ) \), \( ( -\sin { \theta }, \cos { \theta } ) \)이므로, 대입하면 유도가 끝난다.</p>
+<h4 id="geometry-shader:d680e8a854a7cbad6d490c445cba2eba">Geometry Shader</h4>
 
-<div>$$
-\begin{align*} R\begin{bmatrix} x \\ y \end{bmatrix} &=\begin{bmatrix} \cos { \theta }  \\ \sin { \theta } \end{bmatrix}x+\begin{bmatrix} -\sin { \theta } \\ \cos { \theta } \end{bmatrix}y\\ &=\begin{bmatrix} \cos { \theta } & -\sin { \theta } \\ \sin { \theta } & \cos { \theta } \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix} \\ \\ R &=\begin{bmatrix} \cos { \theta } & -\sin { \theta } \\ \sin { \theta } & \cos { \theta } \end{bmatrix} \end{align*}
-$$</div>
+<h2 id="vertex-post-processing:d680e8a854a7cbad6d490c445cba2eba">Vertex Post-Processing</h2>
 
-<p>정말 쉽다.</p>
+<h4 id="transform-feedback:d680e8a854a7cbad6d490c445cba2eba">Transform Feedback</h4>
 
-<p>3차원의 경우는 회전축에 대해 \( R \overrightarrow { v } = \overrightarrow { v } \)이므로 더 생각할 것도 없다.</p>
+<h4 id="clipping-perspective-divide-viewport-transform:d680e8a854a7cbad6d490c445cba2eba">Clipping, Perspective Divide, Viewport Transform</h4>
 
-<div>$$
-\begin{align*} { R }_{ z }\begin{bmatrix} x \\ y \\ z \end{bmatrix} &={ R }_{ z }\begin{bmatrix} x \\ 0 \\ 0 \end{bmatrix}+{ R }_{ z }\begin{bmatrix} 0 \\ y \\ 0 \end{bmatrix}+{ R }_{ z }\begin{bmatrix} 0 \\ 0 \\ z \end{bmatrix}\\ &={ R }_{ z }\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}x+{ R }_{ z }\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}y+{ R }_{ z }\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}z\\ &=\begin{bmatrix} \cos { \theta  } \\ \sin { \theta } \\ 0 \end{bmatrix}x+\begin{bmatrix} -\sin { \theta } \\ \cos { \theta } \\ 0 \end{bmatrix}y+\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}z\\ &=\begin{bmatrix} \cos { \theta }  & -\sin { \theta } & 0 \\ \sin { \theta } & \cos { \theta } & 0 \\ 0 & 0 & 1 \end{bmatrix}\begin{bmatrix} x \\ y \\ z \end{bmatrix} \\ \\ { R }_{ z } &=\begin{bmatrix} \cos { \theta } & -\sin { \theta } & 0 \\ \sin { \theta } & \cos { \theta } & 0 \\ 0 & 0 & 1 \end{bmatrix} \end{align*}
-$$</div>
+<h2 id="primitive-assembly:d680e8a854a7cbad6d490c445cba2eba">Primitive Assembly</h2>
 
-<p>같은 방법으로 \( { R }_{ x } \), \( { R }_{ y } \)도 쉽게 구할 수 있다.</p>
+<p>전달받은 데이터를 primitive로 묶는 단계. Face culling</p>
+
+<h4 id="face-culling:d680e8a854a7cbad6d490c445cba2eba">Face Culling</h4>
+
+<h2 id="rasterization:d680e8a854a7cbad6d490c445cba2eba">Rasterization</h2>
+
+<h2 id="fragment-shader:d680e8a854a7cbad6d490c445cba2eba">Fragment Shader</h2>
+
+<h2 id="per-sample-operations:d680e8a854a7cbad6d490c445cba2eba">Per-sample Operations</h2>
+
+<p>Fragment Shader의 결과물(Samples=Fragments)을</p>
+
+<h4 id="scissor-test:d680e8a854a7cbad6d490c445cba2eba">Scissor Test</h4>
+
+<h4 id="strencil-test:d680e8a854a7cbad6d490c445cba2eba">Strencil Test</h4>
+
+<h4 id="depth-test:d680e8a854a7cbad6d490c445cba2eba">Depth Test</h4>
+
+<h4 id="blending:d680e8a854a7cbad6d490c445cba2eba">Blending</h4>
+
+<h4 id="logical-operation:d680e8a854a7cbad6d490c445cba2eba">Logical Operation</h4>
+
+<p>Blending이 수행되지 않는다면 Logical Operation이 수행된다. Fragments가 Framebuffer에 어떻게 쓰여질지 결정한다.</p>
+
+<h4 id="write-mask:d680e8a854a7cbad6d490c445cba2eba">Write Mask</h4>
 
 <h1 id="references:d680e8a854a7cbad6d490c445cba2eba">References</h1>
 
 <ul>
-<li><a href="https://ko.wikipedia.org/wiki/선형변환">https://ko.wikipedia.org/wiki/선형변환</a></li>
+<li><a href="https://www.opengl.org/wiki/Rendering_Pipeline_Overview">https://www.opengl.org/wiki/Rendering_Pipeline_Overview</a></li>
 </ul>
 
       </article>
@@ -213,23 +255,14 @@ $$</div>
       <ul class="pager blog-pager">
         
         <li class="previous">
-            <a href="https://o-tantk.github.io/posts/finding-median/" data-toggle="tooltip" data-placement="top" title="Previous : 중앙값(Median) 찾기">
-            중앙값(Median) 찾기
+            <a href="https://o-tantk.github.io/posts/derive-rotation-matrix/" data-toggle="tooltip" data-placement="top" title="Previous : 회전 행렬(Rotation matrix)의 유도">
+            회전 행렬(Rotation matrix)의 유도
             
-            <br/><small>Heap을 이용한 중앙값 찾기</small>
+            <br/><small>선형 변환을 이용한 회전 행렬의 유도</small>
             
             </a>
         </li>
         
-        
-        <li class="next">
-        <a href="https://o-tantk.github.io/posts/graphics-pipeline/" data-toggle="tooltip" data-placement="top" title="Next : 그래픽스 렌더링 파이프라인 (Graphics Rendering Pipeline)">
-            그래픽스 렌더링 파이프라인 (Graphics Rendering Pipeline)
-            
-            <br/><small>OpenGL 렌더링 파이프라인</small>
-            
-        </a>
-        </li>
         
       </ul>
 

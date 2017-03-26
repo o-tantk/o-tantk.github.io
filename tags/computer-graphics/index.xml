@@ -8,8 +8,125 @@
     <language>euc-kr</language>
     <managingEditor>tantk90@hotmail.com (tantk)</managingEditor>
     <webMaster>tantk90@hotmail.com (tantk)</webMaster>
-    <lastBuildDate>Tue, 15 Nov 2016 22:45:08 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 06 Dec 2016 15:06:27 +0900</lastBuildDate>
     <atom:link href="https://o-tantk.github.io/tags/computer-graphics/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>그래픽스 렌더링 파이프라인 (Graphics Rendering Pipeline)</title>
+      <link>https://o-tantk.github.io/posts/graphics-pipeline/</link>
+      <pubDate>Tue, 06 Dec 2016 15:06:27 +0900</pubDate>
+      <author>tantk90@hotmail.com (tantk)</author>
+      <guid>https://o-tantk.github.io/posts/graphics-pipeline/</guid>
+      <description>
+
+&lt;h1 id=&#34;사설:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;사설&lt;/h1&gt;
+
+&lt;p&gt;컴퓨터 그래픽스 분야를 처음 공부하면, 삼각형 그리기부터 시작해서 버텍스 트랜스폼, 라이팅, 쉐이딩 등 &lt;a href=&#34;https://www.opengl.org/wiki/Fixed_Function_Pipeline&#34;&gt;고정 함수 파이프라인(Fixed Function Pipeline)&lt;/a&gt;을 이용하는 방법부터 익히게 된다. 그리고 이런 방법이 어느정도 익숙해지면, Programmable Pipeline을 이용한 쉐이더 프로그래밍을 시작한다.&lt;/p&gt;
+
+&lt;p&gt;그러나 쉐이더 프로그래밍에 입문하고 나서도, 렌더링 파이프라인을 제대로 이해하지 못해 그저 결과만 낼 수 있도록 구현 방법만 익히는 경우가 많다. 결국 이 상태가 유지된 채로 고급 쉐이딩 기술을 구현해야 하는 때가 오고, 그래픽스 파이프라인을 이해하지 않고선 구현조차 못 하는 지경에 이르기 때문에 처음부터 다시 공부하게 된다.&lt;/p&gt;
+
+&lt;p&gt;물론, 학교 커리큘럼에서 그래픽스 파이프라인에 대해 다루지 않는 것은 아니다. 다만, 막 걸음마를 뗐는데 전체 과정을 아우르는 개념을 이해하는 것도 어렵고, 사용하는 방법을 가르치기에도 시간이 빠듯하기 때문인지 학생들에게 완벽한 이해를 바라지 않는 것 같다. (적어도 내가 다닌 학교에서는 그러했다.)&lt;/p&gt;
+
+&lt;p&gt;그래서 컴퓨터 그래픽스 분야를 공부한다면 반드시 꿰고 있어야할 &lt;strong&gt;그래픽스 렌더링 파이프라인&lt;/strong&gt;을 정리해보고자 한다.&lt;br /&gt;
+다만, 각각의 단계에 대한 심도있는 이해는 여전히 공부가 필요할 것이다.&lt;/p&gt;
+
+&lt;h1 id=&#34;opengl-렌더링-파이프라인:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;OpenGL 렌더링 파이프라인&lt;/h1&gt;
+
+&lt;p&gt;사용할 줄 아는 그래픽스 라이브러리가 OpenGL이므로 OpenGL의 렌더링 파이프라인을 통해 설명한다. DirectX는 써본 적이 없어 잘 모르지만, 기본적인 골격은 비슷할 것이다.&lt;/p&gt;
+
+&lt;p&gt;OpenGL 렌더링 파이프라인의 단계를 나열했다. 괄호는 생략 가능한 단계이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Vertex Specification&lt;/li&gt;
+&lt;li&gt;Vertex Processing
+
+&lt;ol&gt;
+&lt;li&gt;Vertex Shader&lt;/li&gt;
+&lt;li&gt;[Tessellation]&lt;/li&gt;
+&lt;li&gt;[Geometry Shader]&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Vertex Post-Processing
+
+&lt;ol&gt;
+&lt;li&gt;[Transform Feedback]&lt;/li&gt;
+&lt;li&gt;Clipping, Perspective Divide, Viewport Transform&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Primitive Assembly
+
+&lt;ul&gt;
+&lt;li&gt;[Face Culling]&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Rasterization&lt;/li&gt;
+&lt;li&gt;[Fragment Shader]&lt;/li&gt;
+&lt;li&gt;Per-sample Operations
+
+&lt;ol&gt;
+&lt;li&gt;[Scissor Test]&lt;/li&gt;
+&lt;li&gt;[Stencil Test]&lt;/li&gt;
+&lt;li&gt;[Depth Test]&lt;/li&gt;
+&lt;li&gt;[Blending]&lt;/li&gt;
+&lt;li&gt;[Logical Operation]&lt;/li&gt;
+&lt;li&gt;Write Mask&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;vertex-specification:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Vertex Specification&lt;/h2&gt;
+
+&lt;p&gt;응용프로그램으로부터 버텍스를 읽고 렌더링(입력 데이터를 해석)한다.&lt;/p&gt;
+
+&lt;h2 id=&#34;vertex-processing:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Vertex Processing&lt;/h2&gt;
+
+&lt;h4 id=&#34;vertex-shader:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Vertex Shader&lt;/h4&gt;
+
+&lt;h4 id=&#34;tessellation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Tessellation&lt;/h4&gt;
+
+&lt;p&gt;번역하면 &lt;a href=&#34;https://ko.wikipedia.org/wiki/쪽매맞춤&#34;&gt;쪽매맞춤&lt;/a&gt;이지만, 컴퓨터 그래픽스에서 사용되는 기술은 &lt;strong&gt;테셀레이션&lt;/strong&gt;이라고 영문 그대로 읽는다.&lt;/p&gt;
+
+&lt;h4 id=&#34;geometry-shader:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Geometry Shader&lt;/h4&gt;
+
+&lt;h2 id=&#34;vertex-post-processing:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Vertex Post-Processing&lt;/h2&gt;
+
+&lt;h4 id=&#34;transform-feedback:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Transform Feedback&lt;/h4&gt;
+
+&lt;h4 id=&#34;clipping-perspective-divide-viewport-transform:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Clipping, Perspective Divide, Viewport Transform&lt;/h4&gt;
+
+&lt;h2 id=&#34;primitive-assembly:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Primitive Assembly&lt;/h2&gt;
+
+&lt;p&gt;전달받은 데이터를 primitive로 묶는 단계. Face culling&lt;/p&gt;
+
+&lt;h4 id=&#34;face-culling:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Face Culling&lt;/h4&gt;
+
+&lt;h2 id=&#34;rasterization:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Rasterization&lt;/h2&gt;
+
+&lt;h2 id=&#34;fragment-shader:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Fragment Shader&lt;/h2&gt;
+
+&lt;h2 id=&#34;per-sample-operations:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Per-sample Operations&lt;/h2&gt;
+
+&lt;p&gt;Fragment Shader의 결과물(Samples=Fragments)을&lt;/p&gt;
+
+&lt;h4 id=&#34;scissor-test:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Scissor Test&lt;/h4&gt;
+
+&lt;h4 id=&#34;strencil-test:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Strencil Test&lt;/h4&gt;
+
+&lt;h4 id=&#34;depth-test:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Depth Test&lt;/h4&gt;
+
+&lt;h4 id=&#34;blending:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Blending&lt;/h4&gt;
+
+&lt;h4 id=&#34;logical-operation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Logical Operation&lt;/h4&gt;
+
+&lt;p&gt;Blending이 수행되지 않는다면 Logical Operation이 수행된다. Fragments가 Framebuffer에 어떻게 쓰여질지 결정한다.&lt;/p&gt;
+
+&lt;h4 id=&#34;write-mask:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Write Mask&lt;/h4&gt;
+
+&lt;h1 id=&#34;references:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.opengl.org/wiki/Rendering_Pipeline_Overview&#34;&gt;https://www.opengl.org/wiki/Rendering_Pipeline_Overview&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>회전 행렬(Rotation matrix)의 유도</title>

@@ -172,7 +172,7 @@
 
 <p><code>int</code>형 자료를 갖는 배열임에도 <code>float</code>형을 반환하는 이유는, 짝수개에 대한 중앙값의 정의 때문이다. 물론 소수점 이하가 필요 없다면 그대로 반환해도 되겠다. 반올림이 아닌 절삭인 것도 감안하고.</p>
 
-<h2 id="실시간으로-중앙값-찾기:d680e8a854a7cbad6d490c445cba2eba">실시간으로 중앙값 찾기</h2>
+<h2 id="실시간으로-중앙값-running-median-찾기:d680e8a854a7cbad6d490c445cba2eba">실시간으로 중앙값(Running Median) 찾기</h2>
 
 <p>중앙값을 찾기 위해선 배열의 정렬이 선행되어야 한다. 그렇다면, 데이터가 지속적으로 추가/삭제되고 있는 상황에서 중앙값을 찾으려면 어떻게 해야 할까? 위의 방법을 이용한다면, 중앙값을 찾을 때마다 배열 전체에 대한 정렬을 시도하므로 엄청난 시간 낭비가 아닐 수 없다.</p>
 
@@ -180,10 +180,12 @@
 
 <h3 id="알고리즘:d680e8a854a7cbad6d490c445cba2eba">알고리즘</h3>
 
+<blockquote>
 <ul>
 <li>Max heap은 최대값에 바로 접근할 수 있다.</li>
 <li>Min heap은 최소값에 바로 접근할 수 있다.</li>
 </ul>
+</blockquote>
 
 <p>Heap의 두 성질 이용해, 중앙값보다 작은 값들은 Max heap에, 중앙값보다 큰 값들은 Min heap에 저장하는 방식으로 중앙값을 찾는 알고리즘을 구현할 수 있다. 아래의 상황을 보자.
 <img src="diagram00.png" alt="첫 번째 단계" />
@@ -202,7 +204,7 @@
 <img src="diagram07.png" alt="여덟 번째 단계" />
 <code>1</code>은 기준보다 작으니 Max heap에 넣지만 균형을 맞추기 위해 Max heap의 최대값을 이동시킨다. 짝수개이므로 중앙값은 <code>2</code>와 <code>3</code>의 평균이다.</p>
 
-<p>입력이 들어올 때마다 한 번의 데이터 이동만으로 실시간으로 중앙값을 찾고 있다. Heap의 시간복잡도가 <code>O(log N)</code>이므로 최악의 경우라도 &lsquo;삽입 + 삭제 + 삽입&rsquo;의 <code>O(3 log N)</code>이다.</p>
+<p>입력이 들어올 때마다 한 번의 데이터 이동만으로 실시간으로 중앙값을 찾고 있다. Heap의 시간복잡도가 <code>O(log N)</code>이므로 최악의 경우라도 &lsquo;삽입 + 삭제 + 삽입&rsquo;의 <code>O(3 log N)</code>의 성능을 보인다.</p>
 
 <h3 id="구현:d680e8a854a7cbad6d490c445cba2eba">구현</h3>
 
@@ -235,7 +237,7 @@ while(true){
         bigger.push(number);
     }
 
-    // smaller의 크기와 bigger의 크기가 같거나, smaller가 크기가 하나 더 크게 유지되도록 데이터를 옮긴다. 
+    // smaller의 크기와 bigger의 크기가 같거나, smaller의 크기가 하나 더 크게 유지되도록 데이터를 옮긴다. 
     if(smaller.size() &lt; bigger.size()){
         smaller.push(bigger.top());
         bigger.pop();
